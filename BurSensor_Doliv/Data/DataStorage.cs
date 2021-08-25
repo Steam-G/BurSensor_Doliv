@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BurSensor_Doliv
 {
-    class DataStorage : INotifyPropertyChanged
+    public class DataStorage : INotifyPropertyChanged
     {
         private double _ValZaboi;
         private double _ValDoloto;
@@ -460,6 +462,52 @@ namespace BurSensor_Doliv
                     NotifyPropertyChanged("ValOperatorGTIStr");
                 }
             }
+        }
+
+
+        private string[] Zagolovki = new string[]{
+            "Месторождение",
+            "Куст №",
+            "Скважина №",
+            "Бригада №",
+            "Бурильщики",
+            "Ответственные за заполнение листа долива",
+            "Ответственные за учет кол-ва поднятого/спущенного БИ",
+            "Забой скважины",
+            "Причина / Цель СПО",
+            "Плотность БР",
+            "Время начала СПО"};
+
+        public BindingSource GetBindingSource()
+        {
+            BindingSource bindingSource = new BindingSource();
+            DataTable table = new DataTable();
+
+            table.Columns.Add("Заголовок", typeof(string));
+            table.Columns.Add("Значение", typeof(string));
+
+            int i = 0;
+            foreach (var item in Zagolovki)
+            {
+                DataRow row = table.NewRow();
+                row[0] = item;
+                table.Rows.Add(row);
+            }
+
+            table.Rows[0][1] = _ValMestorojdenieStr;
+            table.Rows[1][1] = _ValKustStr;
+            table.Rows[2][1] = _ValSkvajinaStr;
+            table.Rows[3][1] = _ValBrigadaStr;
+            table.Rows[4][1] = _ValBurilshikStr;
+            table.Rows[5][1] = _ValOtvZaZapolnenieListaDolivaStr;
+            table.Rows[6][1] = _ValOtvZaUchetKolichestvaBIStr;
+            table.Rows[7][1] = _ValZaboiStr;
+            table.Rows[8][1] = _ValPrichinaSPOStr;
+            table.Rows[9][1] = _ValPlotnostBRStr;
+            table.Rows[10][1] = _ValTimeStartSPOStr;
+
+            bindingSource.DataSource = table;
+            return bindingSource;
         }
     }
 }

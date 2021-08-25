@@ -30,11 +30,13 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.infoBlock1 = new BurSensor_Doliv.InfoBlock();
             this.infoTable1 = new BurSensor_Doliv.InfoTable();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
@@ -59,12 +61,24 @@
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.infoBlock1);
+            // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.infoTable1);
             this.splitContainer2.Size = new System.Drawing.Size(947, 243);
-            this.splitContainer2.SplitterDistance = 610;
+            this.splitContainer2.SplitterDistance = 662;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // infoBlock1
+            // 
+            this.infoBlock1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infoBlock1.Location = new System.Drawing.Point(0, 0);
+            this.infoBlock1.Name = "infoBlock1";
+            this.infoBlock1.Size = new System.Drawing.Size(662, 243);
+            this.infoBlock1.TabIndex = 0;
             // 
             // infoTable1
             // 
@@ -72,7 +86,7 @@
             this.infoTable1.Location = new System.Drawing.Point(0, 0);
             this.infoTable1.MinimumSize = new System.Drawing.Size(280, 165);
             this.infoTable1.Name = "infoTable1";
-            this.infoTable1.Size = new System.Drawing.Size(333, 243);
+            this.infoTable1.Size = new System.Drawing.Size(281, 243);
             this.infoTable1.TabIndex = 0;
             // 
             // Form1
@@ -86,6 +100,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
@@ -98,6 +113,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private InfoTable infoTable1;
+        private InfoBlock infoBlock1;
     }
 }
 

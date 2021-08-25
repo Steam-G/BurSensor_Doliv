@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B715E71-FA8F-49B3-BC2C-AB808538AC7B}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>BurSensor_Doliv</RootNamespace>
-    <AssemblyName>BurSensor_Doliv</AssemblyName>
+    <ProjectGuid>{4DA7FE7F-20E2-4BCA-A64B-39E3841C950B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Sys_components</RootNamespace>
+    <AssemblyName>Sys_components</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,46 +48,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DataListDoliva.cs" />
-    <Compile Include="Data\DataStorage.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="ByteArray.cs" />
+    <Compile Include="ComSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ComSettings.Designer.cs">
+      <DependentUpon>ComSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="InfoBlock.cs">
+    <Compile Include="AlphaDataClass.cs" />
+    <Compile Include="Elements\PropertyBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InfoBlock.Designer.cs">
-      <DependentUpon>InfoBlock.cs</DependentUpon>
+    <Compile Include="Elements\PropertyBox.Designer.cs">
+      <DependentUpon>PropertyBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="InfoTable.cs">
+    <Compile Include="Elements\PropertyClass.cs" />
+    <Compile Include="Elements\SmallPropertyBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InfoTable.Designer.cs">
-      <DependentUpon>InfoTable.cs</DependentUpon>
+    <Compile Include="Elements\SmallPropertyBox.Designer.cs">
+      <DependentUpon>SmallPropertyBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\SmallPropertyClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Data\StructListDoliva.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Register.cs" />
+    <Compile Include="Word.cs" />
+    <EmbeddedResource Include="ComSettings.resx">
+      <DependentUpon>ComSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InfoBlock.resx">
-      <DependentUpon>InfoBlock.cs</DependentUpon>
+    <EmbeddedResource Include="Elements\PropertyBox.resx">
+      <DependentUpon>PropertyBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InfoTable.resx">
-      <DependentUpon>InfoTable.cs</DependentUpon>
+    <EmbeddedResource Include="Elements\SmallPropertyBox.resx">
+      <DependentUpon>SmallPropertyBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -100,10 +107,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\System\Sys_components\Sys_components.csproj">
-      <Project>{4da7fe7f-20e2-4bca-a64b-39e3841c950b}</Project>
-      <Name>Sys_components</Name>
-    </ProjectReference>
+    <None Include="Elements\gear2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
