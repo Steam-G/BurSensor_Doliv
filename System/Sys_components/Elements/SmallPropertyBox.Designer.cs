@@ -39,10 +39,10 @@
             this.lbl1.BackColor = System.Drawing.Color.Moccasin;
             this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbl1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lbl1.Location = new System.Drawing.Point(315, 1);
+            this.lbl1.Location = new System.Drawing.Point(400, 1);
             this.lbl1.Name = "lbl1";
             this.lbl1.Padding = new System.Windows.Forms.Padding(5, 1, 5, 1);
-            this.lbl1.Size = new System.Drawing.Size(182, 28);
+            this.lbl1.Size = new System.Drawing.Size(100, 28);
             this.lbl1.TabIndex = 3;
             this.lbl1.Text = "Value";
             this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -58,7 +58,7 @@
             this.lbl0.Location = new System.Drawing.Point(3, 1);
             this.lbl0.Name = "lbl0";
             this.lbl0.Padding = new System.Windows.Forms.Padding(5, 1, 1, 5);
-            this.lbl0.Size = new System.Drawing.Size(311, 28);
+            this.lbl0.Size = new System.Drawing.Size(391, 28);
             this.lbl0.TabIndex = 2;
             this.lbl0.Text = "PropertyName";
             this.lbl0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

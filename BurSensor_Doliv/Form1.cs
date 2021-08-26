@@ -17,6 +17,9 @@ namespace BurSensor_Doliv
         public Form1()
         {
             InitializeComponent();
+
+            connectLeuza1.AddControl(spb_ValDoliv);
+            connectLeuza1.ConnectLeuza_Init();
             test();
         }
 

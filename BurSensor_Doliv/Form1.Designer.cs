@@ -32,6 +32,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.infoBlock1 = new BurSensor_Doliv.InfoBlock();
+            this.connectLeuza1 = new BurSensor_Doliv.Components.ConnectLeuza();
+            this.spb_ValDoliv = new Sys_components.SmallPropertyBox();
             this.infoTable1 = new BurSensor_Doliv.InfoTable();
             this.mainTableDoliv1 = new BurSensor_Doliv.Components.MainTableDoliv();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -58,8 +60,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.mainTableDoliv1);
-            this.splitContainer1.Size = new System.Drawing.Size(947, 766);
-            this.splitContainer1.SplitterDistance = 243;
+            this.splitContainer1.Size = new System.Drawing.Size(947, 797);
+            this.splitContainer1.SplitterDistance = 319;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -74,8 +76,10 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.connectLeuza1);
+            this.splitContainer2.Panel2.Controls.Add(this.spb_ValDoliv);
             this.splitContainer2.Panel2.Controls.Add(this.infoTable1);
-            this.splitContainer2.Size = new System.Drawing.Size(947, 243);
+            this.splitContainer2.Size = new System.Drawing.Size(947, 319);
             this.splitContainer2.SplitterDistance = 662;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -109,16 +113,33 @@
             this.infoBlock1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoBlock1.Location = new System.Drawing.Point(0, 0);
             this.infoBlock1.Name = "infoBlock1";
-            this.infoBlock1.Size = new System.Drawing.Size(662, 243);
+            this.infoBlock1.Size = new System.Drawing.Size(662, 319);
             this.infoBlock1.TabIndex = 0;
+            // 
+            // connectLeuza1
+            // 
+            this.connectLeuza1.Location = new System.Drawing.Point(3, 3);
+            this.connectLeuza1.Name = "connectLeuza1";
+            this.connectLeuza1.Size = new System.Drawing.Size(275, 80);
+            this.connectLeuza1.TabIndex = 2;
+            // 
+            // spb_ValDoliv
+            // 
+            this.spb_ValDoliv.Location = new System.Drawing.Point(0, 260);
+            this.spb_ValDoliv.Margin = new System.Windows.Forms.Padding(1);
+            this.spb_ValDoliv.Name = "spb_ValDoliv";
+            this.spb_ValDoliv.Padding = new System.Windows.Forms.Padding(1);
+            this.spb_ValDoliv.PropertyName = null;
+            this.spb_ValDoliv.Size = new System.Drawing.Size(280, 58);
+            this.spb_ValDoliv.TabIndex = 1;
+            this.spb_ValDoliv.Value = null;
             // 
             // infoTable1
             // 
-            this.infoTable1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infoTable1.Location = new System.Drawing.Point(0, 0);
+            this.infoTable1.Location = new System.Drawing.Point(1, 81);
             this.infoTable1.MinimumSize = new System.Drawing.Size(280, 165);
             this.infoTable1.Name = "infoTable1";
-            this.infoTable1.Size = new System.Drawing.Size(281, 243);
+            this.infoTable1.Size = new System.Drawing.Size(280, 175);
             this.infoTable1.TabIndex = 0;
             // 
             // mainTableDoliv1
@@ -126,14 +147,14 @@
             this.mainTableDoliv1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTableDoliv1.Location = new System.Drawing.Point(0, 0);
             this.mainTableDoliv1.Name = "mainTableDoliv1";
-            this.mainTableDoliv1.Size = new System.Drawing.Size(947, 519);
+            this.mainTableDoliv1.Size = new System.Drawing.Size(947, 474);
             this.mainTableDoliv1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 766);
+            this.ClientSize = new System.Drawing.Size(947, 797);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -156,6 +177,8 @@
         private InfoTable infoTable1;
         private InfoBlock infoBlock1;
         private Components.MainTableDoliv mainTableDoliv1;
+        private Sys_components.SmallPropertyBox spb_ValDoliv;
+        private Components.ConnectLeuza connectLeuza1;
     }
 }
 

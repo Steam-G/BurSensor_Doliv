@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ConnectLeuza.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\ConnectLeuza.Designer.cs">
+      <DependentUpon>ConnectLeuza.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\MainTableDoliv.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,9 +77,13 @@
     <Compile Include="Components\InfoTable.Designer.cs">
       <DependentUpon>InfoTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="LeuzaRegReceiver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\StructListDoliva.cs" />
+    <EmbeddedResource Include="Components\ConnectLeuza.resx">
+      <DependentUpon>ConnectLeuza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\MainTableDoliv.resx">
       <DependentUpon>MainTableDoliv.cs</DependentUpon>
     </EmbeddedResource>
