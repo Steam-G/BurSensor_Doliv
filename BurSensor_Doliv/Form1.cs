@@ -22,7 +22,7 @@ namespace BurSensor_Doliv
 
         private void test()
         {
-            data.ValMestorojdenieStr = "Верхнее Пурпейская";
+            data.ValMestorojdenieStr = "Верхнее Пурпейское";
             infoBlock1.dataStorage = data;
             infoBlock1.Refresh();
         }

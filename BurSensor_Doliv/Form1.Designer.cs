@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            BurSensor_Doliv.DataStorage dataStorage1 = new BurSensor_Doliv.DataStorage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.infoBlock1 = new BurSensor_Doliv.InfoBlock();
             this.infoTable1 = new BurSensor_Doliv.InfoTable();
+            this.mainTableDoliv1 = new BurSensor_Doliv.Components.MainTableDoliv();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -51,6 +54,10 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.mainTableDoliv1);
             this.splitContainer1.Size = new System.Drawing.Size(947, 766);
             this.splitContainer1.SplitterDistance = 243;
             this.splitContainer1.TabIndex = 0;
@@ -74,6 +81,31 @@
             // 
             // infoBlock1
             // 
+            dataStorage1.IpAddr = null;
+            dataStorage1.ObemJidkosti = 0D;
+            dataStorage1.ValBrigadaStr = null;
+            dataStorage1.ValBurilshikStr = null;
+            dataStorage1.ValDate = new System.DateTime(((long)(0)));
+            dataStorage1.ValDateStr = null;
+            dataStorage1.ValDoloto = 0D;
+            dataStorage1.ValDolotoStr = null;
+            dataStorage1.ValeTimeStartSPO = new System.DateTime(((long)(0)));
+            dataStorage1.ValKustStr = null;
+            dataStorage1.ValMasterStr = null;
+            dataStorage1.ValMestorojdenieStr = null;
+            dataStorage1.ValObemJidkostiStr = null;
+            dataStorage1.ValOperatorGTIStr = null;
+            dataStorage1.ValOtvZaUchetKolichestvaBIStr = null;
+            dataStorage1.ValOtvZaZapolnenieListaDolivaStr = null;
+            dataStorage1.ValPlotnostBR = 0D;
+            dataStorage1.ValPlotnostBRStr = null;
+            dataStorage1.ValPrichinaSPOStr = null;
+            dataStorage1.ValSkvajinaStr = null;
+            dataStorage1.ValSupervizerStr = null;
+            dataStorage1.ValTimeStartSPOStr = null;
+            dataStorage1.ValZaboi = 0D;
+            dataStorage1.ValZaboiStr = null;
+            this.infoBlock1.dataStorage = dataStorage1;
             this.infoBlock1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoBlock1.Location = new System.Drawing.Point(0, 0);
             this.infoBlock1.Name = "infoBlock1";
@@ -89,6 +121,14 @@
             this.infoTable1.Size = new System.Drawing.Size(281, 243);
             this.infoTable1.TabIndex = 0;
             // 
+            // mainTableDoliv1
+            // 
+            this.mainTableDoliv1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTableDoliv1.Location = new System.Drawing.Point(0, 0);
+            this.mainTableDoliv1.Name = "mainTableDoliv1";
+            this.mainTableDoliv1.Size = new System.Drawing.Size(947, 519);
+            this.mainTableDoliv1.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,6 +138,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -114,6 +155,7 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private InfoTable infoTable1;
         private InfoBlock infoBlock1;
+        private Components.MainTableDoliv mainTableDoliv1;
     }
 }
 

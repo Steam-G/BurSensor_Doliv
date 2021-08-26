@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\MainTableDoliv.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\MainTableDoliv.Designer.cs">
+      <DependentUpon>MainTableDoliv.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\DataListDoliva.cs" />
     <Compile Include="Data\DataStorage.cs" />
     <Compile Include="Form1.cs">
@@ -53,28 +59,31 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="InfoBlock.cs">
+    <Compile Include="Components\InfoBlock.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InfoBlock.Designer.cs">
+    <Compile Include="Components\InfoBlock.Designer.cs">
       <DependentUpon>InfoBlock.cs</DependentUpon>
     </Compile>
-    <Compile Include="InfoTable.cs">
+    <Compile Include="Components\InfoTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InfoTable.Designer.cs">
+    <Compile Include="Components\InfoTable.Designer.cs">
       <DependentUpon>InfoTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\StructListDoliva.cs" />
+    <EmbeddedResource Include="Components\MainTableDoliv.resx">
+      <DependentUpon>MainTableDoliv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InfoBlock.resx">
+    <EmbeddedResource Include="Components\InfoBlock.resx">
       <DependentUpon>InfoBlock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InfoTable.resx">
+    <EmbeddedResource Include="Components\InfoTable.resx">
       <DependentUpon>InfoTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
