@@ -45,7 +45,7 @@
             this.lbl1.Size = new System.Drawing.Size(100, 28);
             this.lbl1.TabIndex = 3;
             this.lbl1.Text = "Value";
-            this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl0
             // 

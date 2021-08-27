@@ -208,20 +208,21 @@ namespace BurSensor_Doliv
                         _StatusLabel.Text = string.Format("IP: {0}, идет опрос (пакет {1})...", ip, i);
                         _StatusLabel.Font = new Font(_StatusLabel.Name, 9, FontStyle.Bold);
                         _StatusLabel.ForeColor = Color.Green;
-                        if (i == 2) // интересует второй пакет, там расположены забой и долото
+                        if (i == 6) // интересует второй пакет, там расположены забой и долото
                         {
                             //FindAndReadUDataStorage(data, response);
 
-                            string subString = @"DataStorage";
+                            string paket = response.ToString();
+                            //string subString = @"DataStorage";
+                            string subString = @"UVEmkOpts";
                             dataString = dataString + response.ToString();
                             int indexOfSubstring = response.ToString().IndexOf(subString); // равно 6
 
 
                             //Def.ZABOI = (decimal)BitConverter.ToDouble(data, indexOfSubstring + 18 - 1514);
-                            var val = BitConverter.ToDouble(data, indexOfSubstring + 18 - 1514).ToString("#.##");
-                            SmallProperty[0].Value = BitConverter.ToDouble(data, indexOfSubstring + 18 - 1514).ToString("#.##");
+                            var val = BitConverter.ToSingle(data, indexOfSubstring + 14 - 1514*(i-1)).ToString("#.##");
+                            SmallProperty[0].Value = BitConverter.ToSingle(data, indexOfSubstring + 14 - 1514 * (i - 1)).ToString("#.##");
                             //SmallProperty[2].Value = BitConverter.ToDouble(data, indexOfSubstring + 18 + 8 - 1514).ToString("#.##");
-                            string paket = response.ToString();
 
 
                             break;
