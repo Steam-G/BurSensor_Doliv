@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BurSensor_Doliv.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,6 +39,14 @@ namespace BurSensor_Doliv
         private string _ValOperatorGTIStr;
 
         private string _IpAddr;
+
+        private List<StructListInfoTable> _ListKNBK;
+
+        public List<StructListInfoTable> ListKNBK
+        {
+            get => _ListKNBK;
+            set => _ListKNBK = value;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         // This method is called by the Set accessor of each property.
@@ -508,6 +517,36 @@ namespace BurSensor_Doliv
 
             bindingSource.DataSource = table;
             return bindingSource;
+        }
+
+
+
+        public void InitTable(DataGridView dataGrid)
+        {
+            DataTable table = new DataTable();
+            BindingSource bindingSource = new BindingSource();
+
+            table.Columns.Add("Типоразмер БИ", typeof(string));
+            table.Columns.Add("V п.м.(металла)", typeof(double));
+            table.Columns.Add("V п.м.(металл + вн. полость)", typeof(double));
+
+            bindingSource.DataSource = table;
+            dataGrid.DataSource = bindingSource;
+        }
+
+        public void Add(StructListInfoTable structListInfo)
+        {
+            _ListKNBK.Add(structListInfo);
+        }
+
+        public void Remove(int Index)
+        {
+            _ListKNBK.RemoveAt(Index);
+        }
+
+        public void Edit (int Index, StructListInfoTable structListInfo)
+        {
+            _ListKNBK[Index] = structListInfo;
         }
     }
 }

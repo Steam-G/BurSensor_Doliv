@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BurSensor_Doliv
 {
-    class StructListDoliva
+    public class StructListDoliva
     {
         private string _TypeKNBK;
         private int _SvechaCapacity;

@@ -28,6 +28,9 @@ namespace BurSensor_Doliv
             data.ValMestorojdenieStr = "Верхнее Пурпейское";
             infoBlock1.dataStorage = data;
             infoBlock1.Refresh();
+
+            infoTable1.dataStorage = data;
+            infoTable1.Refresh();
         }
     }
 }
