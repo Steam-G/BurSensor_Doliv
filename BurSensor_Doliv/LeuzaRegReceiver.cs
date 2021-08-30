@@ -3,6 +3,7 @@ using Sys_components.Elements;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -208,7 +209,7 @@ namespace BurSensor_Doliv
                         _StatusLabel.Text = string.Format("IP: {0}, идет опрос (пакет {1})...", ip, i);
                         _StatusLabel.Font = new Font(_StatusLabel.Name, 9, FontStyle.Bold);
                         _StatusLabel.ForeColor = Color.Green;
-                        if (i == 6) // интересует второй пакет, там расположены забой и долото
+                        if (i == 5) // интересует определенный пакет, там расположены нужные значения
                         {
                             //FindAndReadUDataStorage(data, response);
 
@@ -217,24 +218,35 @@ namespace BurSensor_Doliv
                             string subString = @"UVEmkOpts";
                             dataString = dataString + response.ToString();
                             int indexOfSubstring = response.ToString().IndexOf(subString); // равно 6
-
+                            int lengthResponce = response.Length;
 
                             //Def.ZABOI = (decimal)BitConverter.ToDouble(data, indexOfSubstring + 18 - 1514);
-                            var val = BitConverter.ToSingle(data, indexOfSubstring + 14 - 1514*(i-1)).ToString("#.##");
-                            SmallProperty[0].Value = BitConverter.ToSingle(data, indexOfSubstring + 14 - 1514 * (i - 1)).ToString("#.##");
-                            //SmallProperty[2].Value = BitConverter.ToDouble(data, indexOfSubstring + 18 + 8 - 1514).ToString("#.##");
+                            // IndexOfSubstring - позиция ключевого слова, 
+                            // 14 - смещение до первого числового значения (4 байта),
+                            // 4 - перепрыгиваем через 4 байта до следующего числового значения
+                            // 4 - перепрыгиваем еще через 4 байта до следующего числового значения
+                            // прием ведется пакетами по 1514 байт, однако поиск ключевого слова проходит по пачке принятых данных
+                            // потому требуется сместиться на неколько пакетов (i-1)*1514 чтобы попасть в нужные отрезок
+                            //var val = BitConverter.ToSingle(data, indexOfSubstring + 14+4+4 - 1514*(i-1)).ToString("#.##");
+                            SmallProperty[0].Value = BitConverter.ToSingle(data, indexOfSubstring + 14+4+4 - 1514 * (i - 1)).ToString("#.##");
+                                //SmallProperty[2].Value = BitConverter.ToDouble(data, indexOfSubstring + 18 + 8 - 1514).ToString("#.##");
 
 
-                            break;
+                            //break;
                         }
 
                         // Сохраним в параметрах этот IP
                         Properties.Settings.Default.defaultIP = ip;
                         Properties.Settings.Default.Save();
                         //await Task.Delay(1);
+                        if (!stream.DataAvailable)
+                        {
+                            var availible = stream.DataAvailable;
+                        }
                     }
                     while (stream.DataAvailable); // пока данные есть в потоке
 
+                    //var buferByte = ReadFully(stream);
                     response.Clear();
                     stream.Dispose();
                     // Закрываем потоки
@@ -277,6 +289,20 @@ namespace BurSensor_Doliv
 
                 MessageBox.Show(e.Message);
                 //Console.WriteLine("Exception: {0}", e.Message);
+            }
+        }
+
+        public static byte[] ReadFully(Stream input)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
             }
         }
 
