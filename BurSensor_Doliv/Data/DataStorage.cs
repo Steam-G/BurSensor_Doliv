@@ -40,7 +40,7 @@ namespace BurSensor_Doliv
 
         private string _IpAddr;
 
-        private List<StructListInfoTable> _ListKNBK;
+        private List<StructListInfoTable> _ListKNBK = new List<StructListInfoTable>();
 
         public List<StructListInfoTable> ListKNBK
         {
@@ -519,7 +519,27 @@ namespace BurSensor_Doliv
             return bindingSource;
         }
 
+        public BindingSource GetBindingSourceInfoTable()
+        {
+            BindingSource bindingSource = new BindingSource();
+            DataTable table = new DataTable();
 
+            table.Columns.Add("Типоразмер БИ", typeof(string));
+            table.Columns.Add("V п.м.(металла)", typeof(double));
+            table.Columns.Add("V п.м.(металл + вн. полость)", typeof(double));
+
+            foreach (var item in _ListKNBK)
+            {
+                DataRow row = table.NewRow();
+                row[0] = item.TypeKNBK;
+                row[1] = item.V1;
+                row[2] = item.V2;
+                table.Rows.Add(row);
+            }
+
+            bindingSource.DataSource = table;
+            return bindingSource;
+        }
 
         public void InitTable(DataGridView dataGrid)
         {
@@ -534,17 +554,17 @@ namespace BurSensor_Doliv
             dataGrid.DataSource = bindingSource;
         }
 
-        public void Add(StructListInfoTable structListInfo)
+        public void AddKNBK(StructListInfoTable structListInfo)
         {
             _ListKNBK.Add(structListInfo);
         }
 
-        public void Remove(int Index)
+        public void RemoveKNBK(int Index)
         {
             _ListKNBK.RemoveAt(Index);
         }
 
-        public void Edit (int Index, StructListInfoTable structListInfo)
+        public void EditKNBK (int Index, StructListInfoTable structListInfo)
         {
             _ListKNBK[Index] = structListInfo;
         }

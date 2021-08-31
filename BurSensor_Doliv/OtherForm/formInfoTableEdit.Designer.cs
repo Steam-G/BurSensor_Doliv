@@ -78,6 +78,7 @@
             this.tb_V1.Name = "tb_V1";
             this.tb_V1.Size = new System.Drawing.Size(151, 20);
             this.tb_V1.TabIndex = 4;
+            this.tb_V1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // tb_V2
             // 
@@ -85,9 +86,11 @@
             this.tb_V2.Name = "tb_V2";
             this.tb_V2.Size = new System.Drawing.Size(151, 20);
             this.tb_V2.TabIndex = 5;
+            this.tb_V2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // btnClose
             // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(405, 51);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
@@ -97,17 +100,21 @@
             // 
             // btnOk
             // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Location = new System.Drawing.Point(324, 51);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 7;
             this.btnOk.Text = "Сохранить";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // formInfoTableEdit
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(495, 82);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnClose);
@@ -119,6 +126,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "formInfoTableEdit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Добавить / изменить справочные данные";
             this.ResumeLayout(false);
             this.PerformLayout();

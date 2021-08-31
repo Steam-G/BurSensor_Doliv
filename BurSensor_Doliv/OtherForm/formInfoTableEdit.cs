@@ -16,5 +16,37 @@ namespace BurSensor_Doliv.OtherForm
         {
             InitializeComponent();
         }
+
+        public string strKNBK
+        {
+            get { return tb_Tiporazm.Text; }
+            set { tb_Tiporazm.Text = value; }
+        }
+
+        public double doublV1
+        {
+            get { return Convert.ToDouble(tb_V1.Text); }
+            set { tb_V1.Text = value.ToString(); }
+        }
+
+        public double doublV2
+        {
+            get { return Convert.ToDouble(tb_V2.Text); }
+            set { tb_V2.Text = value.ToString(); }
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Tb_numb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8 && number != 46) // цифры, клавиша BackSpace и запятая
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

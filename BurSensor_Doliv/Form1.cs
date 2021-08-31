@@ -30,7 +30,6 @@ namespace BurSensor_Doliv
             infoBlock1.Refresh();
 
             infoTable1.dataStorage = data;
-            infoTable1.Refresh();
         }
     }
 }
