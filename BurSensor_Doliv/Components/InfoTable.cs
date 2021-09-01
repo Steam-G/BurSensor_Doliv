@@ -8,12 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BurSensor_Doliv.OtherForm;
+using BurSensor_Doliv.Data;
 
 namespace BurSensor_Doliv
 {
     public partial class InfoTable : UserControl
     {
         DataStorage data = new DataStorage();
+
+        // объявляем событие для контроля изменения листа КНБК
+        public event EventHandler ListKNBKChanged; 
+
+        private List<StructListInfoTable> _ListKNBK = new List<StructListInfoTable>();
+
+        public List<StructListInfoTable> ListKNBK
+        {
+            get => _ListKNBK;
+            set {
+                _ListKNBK = value;
+                if (ListKNBKChanged != null)
+                    ListKNBKChanged(this, new EventArgs());
+            }
+        }
 
         public InfoTable()
         {
@@ -26,6 +42,41 @@ namespace BurSensor_Doliv
         {
             get => data;
             set => data = value;
+        }
+
+        public void InitTable(DataGridView dataGrid)
+        {
+            DataTable table = new DataTable();
+            BindingSource bindingSource = new BindingSource();
+
+            table.Columns.Add("Типоразмер БИ", typeof(string));
+            table.Columns.Add("V п.м.(металла)", typeof(double));
+            table.Columns.Add("V п.м.(металл + вн. полость)", typeof(double));
+
+            bindingSource.DataSource = table;
+            dataGrid.DataSource = bindingSource;
+        }
+
+        public BindingSource GetBindingSourceInfoTable()
+        {
+            BindingSource bindingSource = new BindingSource();
+            DataTable table = new DataTable();
+
+            table.Columns.Add("Типоразмер БИ", typeof(string));
+            table.Columns.Add("V п.м.(металла)", typeof(double));
+            table.Columns.Add("V п.м.(металл + вн. полость)", typeof(double));
+
+            foreach (var item in _ListKNBK)
+            {
+                DataRow row = table.NewRow();
+                row[0] = item.TypeKNBK;
+                row[1] = item.V1;
+                row[2] = item.V2;
+                table.Rows.Add(row);
+            }
+
+            bindingSource.DataSource = table;
+            return bindingSource;
         }
 
         private void btn_Insert_Click(object sender, EventArgs e)
@@ -43,11 +94,14 @@ namespace BurSensor_Doliv
             listInfoTable.V2 = tableEdit.doublV2;
 
             // добавляем в список КНБК новый объект
-            data.AddKNBK(listInfoTable);
+            _ListKNBK.Add(listInfoTable);
 
             // Обновляем таблицу
             tb_Info.Columns.Clear();
-            tb_Info.DataSource = data.GetBindingSourceInfoTable();
+            tb_Info.DataSource = GetBindingSourceInfoTable();
+
+            if (ListKNBKChanged != null)
+                ListKNBKChanged(this, new EventArgs());
         }
     }
 }

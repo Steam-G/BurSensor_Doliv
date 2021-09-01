@@ -15,7 +15,7 @@ namespace BurSensor_Doliv
     {
         private double _ValZaboi;
         private double _ValDoloto;
-        private double _ValObemJidkosti;
+        private Single _ValObemJidkosti;
         private double _ValPlotnostBR;
         private DateTime _ValDate;
         private DateTime _ValTimeStartSPO;
@@ -46,6 +46,22 @@ namespace BurSensor_Doliv
         {
             get => _ListKNBK;
             set => _ListKNBK = value;
+        }
+
+        private StructListInfoReis _ListInfoReis = new StructListInfoReis();
+
+        public StructListInfoReis ListInfoReis
+        {
+            get => _ListInfoReis;
+            set => _ListInfoReis = value;
+        }
+
+        private List<StructListDoliva> _ListDoliva;
+
+        public List<StructListDoliva> ListDoliva
+        {
+            get => _ListDoliva;
+            set => _ListDoliva = value;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -114,7 +130,7 @@ namespace BurSensor_Doliv
             }
         }
 
-        public double ObemJidkosti
+        public Single ObemJidkosti
         {
             get
             {

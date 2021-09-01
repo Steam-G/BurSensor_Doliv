@@ -1,6 +1,6 @@
 ﻿namespace BurSensor_Doliv
 {
-    partial class InfoBlock
+    partial class InfoReis
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -110,12 +110,12 @@
             this.button1.Text = "Обновить";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // InfoBlock
+            // infoReis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
-            this.Name = "InfoBlock";
+            this.Name = "infoReis";
             this.Size = new System.Drawing.Size(356, 184);
             ((System.ComponentModel.ISupportInitialize)(this.tbData)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);

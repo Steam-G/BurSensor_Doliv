@@ -38,6 +38,8 @@ namespace BurSensor_Doliv.Components
             if (cb_Select.Items.IndexOf("localhost") < 0 && cb_Select.Items.IndexOf("127.0.0.1") < 0) cb_Select.Items.Add("localhost");
             cb_Select.Items.Add("Обновить список");
             cb_Select.SelectedIndex = 0;
+
+            
         }
 
         public void AddControl(Control control)

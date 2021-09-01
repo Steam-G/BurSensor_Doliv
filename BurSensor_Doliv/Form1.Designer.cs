@@ -31,7 +31,7 @@
             BurSensor_Doliv.DataStorage dataStorage1 = new BurSensor_Doliv.DataStorage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.infoBlock1 = new BurSensor_Doliv.InfoBlock();
+            this.infoReis1 = new BurSensor_Doliv.InfoReis();
             this.connectLeuza1 = new BurSensor_Doliv.Components.ConnectLeuza();
             this.spb_ValDoliv = new Sys_components.SmallPropertyBox();
             this.infoTable1 = new BurSensor_Doliv.InfoTable();
@@ -72,7 +72,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.infoBlock1);
+            this.splitContainer2.Panel1.Controls.Add(this.infoReis1);
             // 
             // splitContainer2.Panel2
             // 
@@ -83,10 +83,10 @@
             this.splitContainer2.SplitterDistance = 574;
             this.splitContainer2.TabIndex = 0;
             // 
-            // infoBlock1
+            // infoReis1
             // 
             dataStorage1.IpAddr = null;
-            dataStorage1.ObemJidkosti = 0D;
+            dataStorage1.ObemJidkosti = 0F;
             dataStorage1.ValBrigadaStr = null;
             dataStorage1.ValBurilshikStr = null;
             dataStorage1.ValDate = new System.DateTime(((long)(0)));
@@ -109,12 +109,12 @@
             dataStorage1.ValTimeStartSPOStr = null;
             dataStorage1.ValZaboi = 0D;
             dataStorage1.ValZaboiStr = null;
-            this.infoBlock1.dataStorage = dataStorage1;
-            this.infoBlock1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infoBlock1.Location = new System.Drawing.Point(0, 0);
-            this.infoBlock1.Name = "infoBlock1";
-            this.infoBlock1.Size = new System.Drawing.Size(574, 319);
-            this.infoBlock1.TabIndex = 0;
+            this.infoReis1.dataStorage = dataStorage1;
+            this.infoReis1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infoReis1.Location = new System.Drawing.Point(0, 0);
+            this.infoReis1.Name = "infoReis1";
+            this.infoReis1.Size = new System.Drawing.Size(574, 319);
+            this.infoReis1.TabIndex = 0;
             // 
             // connectLeuza1
             // 
@@ -181,7 +181,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private InfoTable infoTable1;
-        private InfoBlock infoBlock1;
+        private InfoReis infoReis1;
         private Components.MainTableDoliv mainTableDoliv1;
         private Sys_components.SmallPropertyBox spb_ValDoliv;
         private Components.ConnectLeuza connectLeuza1;

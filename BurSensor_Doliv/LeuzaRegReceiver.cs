@@ -227,14 +227,22 @@ namespace BurSensor_Doliv
                             // 4 - перепрыгиваем еще через 4 байта до следующего числового значения
                             // прием ведется пакетами по 1514 байт, однако поиск ключевого слова проходит по пачке принятых данных
                             // потому требуется сместиться на неколько пакетов (i-1)*1514 чтобы попасть в нужные отрезок
-                            //var val = BitConverter.ToSingle(data, indexOfSubstring + 14+4+4 - 1514*(i-1)).ToString("#.##");
-                            SmallProperty[0].Value = BitConverter.ToSingle(data, indexOfSubstring + 14+4+4 - 1514 * (i - 1)).ToString("#.##");
-                                //SmallProperty[2].Value = BitConverter.ToDouble(data, indexOfSubstring + 18 + 8 - 1514).ToString("#.##");
+                            
+                            if (indexOfSubstring > -1)
+                            SmallProperty[0].Value = BitConverter.ToSingle(data, indexOfSubstring + 14 + 4 + 4 - 1514 * (i - 1)).ToString("#.##");
+                            //_dataStorage.ObemJidkosti = val;
+                            //SmallProperty[2].Value = BitConverter.ToDouble(data, indexOfSubstring + 18 + 8 - 1514).ToString("#.##");
 
-
+                            response.Clear();
+                            //stream.Dispose();
                             //break;
                         }
 
+                        //if (i >= 100)
+                        //{
+                        //    response.Clear();
+                        //    i = 0;
+                        //}
                         // Сохраним в параметрах этот IP
                         Properties.Settings.Default.defaultIP = ip;
                         Properties.Settings.Default.Save();
@@ -243,6 +251,7 @@ namespace BurSensor_Doliv
                         {
                             var availible = stream.DataAvailable;
                         }
+                        //response.Clear();
                     }
                     while (stream.DataAvailable); // пока данные есть в потоке
 

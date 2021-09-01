@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="Data\DataListDoliva.cs" />
     <Compile Include="Data\DataStorage.cs" />
+    <Compile Include="Data\StructListInfoReis.cs" />
     <Compile Include="Data\StructListInfoTable.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -66,11 +67,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\InfoBlock.cs">
+    <Compile Include="Components\InfoReis.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\InfoBlock.Designer.cs">
-      <DependentUpon>InfoBlock.cs</DependentUpon>
+    <Compile Include="Components\InfoReis.Designer.cs">
+      <DependentUpon>InfoReis.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\InfoTable.cs">
       <SubType>UserControl</SubType>
@@ -97,8 +98,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\InfoBlock.resx">
-      <DependentUpon>InfoBlock.cs</DependentUpon>
+    <EmbeddedResource Include="Components\InfoReis.resx">
+      <DependentUpon>InfoReis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\InfoTable.resx">
       <DependentUpon>InfoTable.cs</DependentUpon>
