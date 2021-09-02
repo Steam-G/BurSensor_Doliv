@@ -100,8 +100,8 @@ namespace BurSensor_Doliv
             tb_Info.Columns.Clear();
             tb_Info.DataSource = GetBindingSourceInfoTable();
 
-            if (ListKNBKChanged != null)
-                ListKNBKChanged(this, new EventArgs());
+            // Генерируем событие о изменении листа КНБК
+            ListKNBKChanged?.Invoke(this, new EventArgs());
         }
     }
 }

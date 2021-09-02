@@ -50,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(169, 9);
+            this.label2.Location = new System.Drawing.Point(12, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 1;
@@ -59,7 +59,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(326, 9);
+            this.label3.Location = new System.Drawing.Point(12, 61);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(154, 13);
             this.label3.TabIndex = 2;
@@ -67,14 +67,14 @@
             // 
             // tb_Tiporazm
             // 
-            this.tb_Tiporazm.Location = new System.Drawing.Point(15, 25);
+            this.tb_Tiporazm.Location = new System.Drawing.Point(167, 6);
             this.tb_Tiporazm.Name = "tb_Tiporazm";
             this.tb_Tiporazm.Size = new System.Drawing.Size(151, 20);
             this.tb_Tiporazm.TabIndex = 3;
             // 
             // tb_V1
             // 
-            this.tb_V1.Location = new System.Drawing.Point(172, 25);
+            this.tb_V1.Location = new System.Drawing.Point(167, 32);
             this.tb_V1.Name = "tb_V1";
             this.tb_V1.Size = new System.Drawing.Size(151, 20);
             this.tb_V1.TabIndex = 4;
@@ -82,7 +82,7 @@
             // 
             // tb_V2
             // 
-            this.tb_V2.Location = new System.Drawing.Point(329, 25);
+            this.tb_V2.Location = new System.Drawing.Point(167, 58);
             this.tb_V2.Name = "tb_V2";
             this.tb_V2.Size = new System.Drawing.Size(151, 20);
             this.tb_V2.TabIndex = 5;
@@ -91,7 +91,7 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(405, 51);
+            this.btnClose.Location = new System.Drawing.Point(243, 99);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 6;
@@ -101,9 +101,9 @@
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(324, 51);
+            this.btnOk.Location = new System.Drawing.Point(12, 99);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.Size = new System.Drawing.Size(222, 23);
             this.btnOk.TabIndex = 7;
             this.btnOk.Text = "Сохранить";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(495, 82);
+            this.ClientSize = new System.Drawing.Size(333, 135);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tb_V2);

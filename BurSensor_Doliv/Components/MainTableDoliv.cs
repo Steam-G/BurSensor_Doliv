@@ -47,5 +47,16 @@ namespace BurSensor_Doliv.Components
             bindingSource.DataSource = table;
             dataGrid.DataSource = bindingSource;
         }
+
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+            // Создаем форму
+
+            // Отображаем форму
+
+            // Создаем и заполняем структуру даннаых
+
+
+        }
     }
 }

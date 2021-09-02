@@ -80,6 +80,12 @@
       <DependentUpon>InfoTable.cs</DependentUpon>
     </Compile>
     <Compile Include="LeuzaRegReceiver.cs" />
+    <Compile Include="OtherForm\formInfoReisEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\formInfoReisEdit.Designer.cs">
+      <DependentUpon>formInfoReisEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="OtherForm\formInfoTableEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\InfoTable.resx">
       <DependentUpon>InfoTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\formInfoReisEdit.resx">
+      <DependentUpon>formInfoReisEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OtherForm\formInfoTableEdit.resx">
       <DependentUpon>formInfoTableEdit.cs</DependentUpon>

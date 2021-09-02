@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btn_Add = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Add = new System.Windows.Forms.Button();
             this.dgv_Doliv = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -65,23 +65,25 @@
             this.splitContainer1.Size = new System.Drawing.Size(758, 369);
             this.splitContainer1.TabIndex = 0;
             // 
-            // btn_Add
+            // label1
             // 
-            this.btn_Add.Location = new System.Drawing.Point(3, 24);
-            this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(150, 23);
-            this.btn_Add.TabIndex = 0;
-            this.btn_Add.Text = "Добавить запись";
-            this.btn_Add.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(5, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(304, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Таблица контроля долива / вытеснения";
             // 
-            // button1
+            // button3
             // 
-            this.button1.Location = new System.Drawing.Point(159, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Изменить запись";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(1213, 5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(150, 42);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Сохранить отчет";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -92,25 +94,24 @@
             this.button2.Text = "Удалить запись";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button1
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(605, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 42);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Сохранить отчет";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(159, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Изменить запись";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // btn_Add
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(304, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Таблица контроля долива / вытеснения";
+            this.btn_Add.Location = new System.Drawing.Point(3, 24);
+            this.btn_Add.Name = "btn_Add";
+            this.btn_Add.Size = new System.Drawing.Size(150, 23);
+            this.btn_Add.TabIndex = 0;
+            this.btn_Add.Text = "Добавить запись";
+            this.btn_Add.UseVisualStyleBackColor = true;
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
             // dgv_Doliv
             // 
