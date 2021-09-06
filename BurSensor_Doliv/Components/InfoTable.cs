@@ -96,12 +96,17 @@ namespace BurSensor_Doliv
             // добавляем в список КНБК новый объект
             _ListKNBK.Add(listInfoTable);
 
-            // Обновляем таблицу
-            tb_Info.Columns.Clear();
-            tb_Info.DataSource = GetBindingSourceInfoTable();
+            Reload();
 
             // Генерируем событие о изменении листа КНБК
             ListKNBKChanged?.Invoke(this, new EventArgs());
+        }
+
+        public void Reload()
+        {
+            // Обновляем таблицу
+            tb_Info.Columns.Clear();
+            tb_Info.DataSource = GetBindingSourceInfoTable();
         }
     }
 }

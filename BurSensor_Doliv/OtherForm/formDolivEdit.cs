@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace BurSensor_Doliv.OtherForm
 {
-    public partial class formInfoReisEdit : Form
+    public partial class formDolivEdit : Form
     {
         private List<StructListInfoTable> _ListKNBK = new List<StructListInfoTable>();
 
@@ -21,12 +21,12 @@ namespace BurSensor_Doliv.OtherForm
             set => _ListKNBK = value;
         }
 
-        public formInfoReisEdit()
+        public formDolivEdit(List<StructListInfoTable> listKNBK)
         {
             InitializeComponent();
             //cb_TypeKNBK.Items.AddRange(new string[] { "KNBK1", "KNBK2", "KNBK3", "KNBK4", "KNBK5" });
             
-            foreach (var item in _ListKNBK)
+            foreach (var item in listKNBK)
             {
                 cb_TypeKNBK.Items.Add(item.TypeKNBK);
             }

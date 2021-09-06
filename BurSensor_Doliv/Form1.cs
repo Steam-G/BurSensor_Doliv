@@ -18,9 +18,17 @@ namespace BurSensor_Doliv
         {
             InitializeComponent();
 
-            data.ListKNBK = infoTable1.ListKNBK;
-            data.ListInfoReis = infoReis1.ListInfoReis;
-            data.ListDoliva = mainTableDoliv1.ListDoliva;
+            //data.ListKNBK = infoTable1.ListKNBK;
+            //data.ListInfoReis = infoReis1.ListInfoReis;
+            //data.ListDoliva = mainTableDoliv1.ListDoliva;
+
+            data = DataStorage.LoadFromFile("Doliv.xml");
+
+            infoTable1.ListKNBK = data.ListKNBK;
+            infoReis1.ListInfoReis = data.ListInfoReis;
+            mainTableDoliv1.ListDoliva = data.ListDoliva;
+
+            infoTable1.Reload();
 
             connectLeuza1.AddControl(spb_ValDoliv);
             connectLeuza1.ConnectLeuza_Init();
@@ -40,7 +48,10 @@ namespace BurSensor_Doliv
         public void ListKNBKChanged(Object sender, EventArgs args)
         {
             InfoTable p = (InfoTable)sender;
+            data.ListKNBK = p.ListKNBK;
+            mainTableDoliv1.ListKNBK = p.ListKNBK;
             MessageBox.Show("В список добавили: " + p.ListKNBK.Last<Data.StructListInfoTable>().TypeKNBK);
+            data.Save("Doliv.xml");
         }
 
         private void button1_Click(object sender, EventArgs e)

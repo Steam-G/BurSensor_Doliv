@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace BurSensor_Doliv
 {
@@ -583,6 +585,24 @@ namespace BurSensor_Doliv
         public void EditKNBK (int Index, StructListInfoTable structListInfo)
         {
             _ListKNBK[Index] = structListInfo;
+        }
+
+        public void Save(string filename)
+        {
+            using (var stream = new FileStream(filename, FileMode.Create))
+            {
+                var XML = new XmlSerializer(typeof(DataStorage));
+                XML.Serialize(stream, this);
+            }
+        }
+
+        public static DataStorage LoadFromFile(string fileName)
+        {
+            using (var stream = new FileStream(fileName, FileMode.Open))
+            {
+                var XML = new XmlSerializer(typeof(DataStorage));
+                return (DataStorage)XML.Deserialize(stream);
+            }
         }
     }
 }
