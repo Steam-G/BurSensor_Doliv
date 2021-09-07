@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BurSensor_Doliv.Components;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,14 +28,19 @@ namespace BurSensor_Doliv
             infoTable1.ListKNBK = data.ListKNBK;
             infoReis1.ListInfoReis = data.ListInfoReis;
             mainTableDoliv1.ListDoliva = data.ListDoliva;
+            mainTableDoliv1.ListKNBK = data.ListKNBK;
 
             infoTable1.Reload();
+            mainTableDoliv1.RefreshTable();
 
             connectLeuza1.AddControl(spb_ValDoliv);
             connectLeuza1.ConnectLeuza_Init();
             test();
 
             infoTable1.ListKNBKChanged += new EventHandler(ListKNBKChanged);
+            infoReis1.ListInfoReisChanged += new EventHandler(ListInfoReisChanged);
+            mainTableDoliv1.ListDolivaChanged += new EventHandler(ListDolivaChanged);
+
         }
 
         private void test()
@@ -45,23 +51,32 @@ namespace BurSensor_Doliv
             infoTable1.dataStorage = data;
         }
 
+        #region События изменения данных
+
+        
         public void ListKNBKChanged(Object sender, EventArgs args)
         {
             InfoTable p = (InfoTable)sender;
             data.ListKNBK = p.ListKNBK;
             mainTableDoliv1.ListKNBK = p.ListKNBK;
-            MessageBox.Show("В список добавили: " + p.ListKNBK.Last<Data.StructListInfoTable>().TypeKNBK);
+            //MessageBox.Show("В список добавили: " + p.ListKNBK.Last<Data.StructListInfoTable>().TypeKNBK);
             data.Save("Doliv.xml");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void ListInfoReisChanged(Object sender, EventArgs args)
         {
-
+            InfoReis p = (InfoReis)sender;
+            data.ListInfoReis = p.ListInfoReis;
+            data.Save("Doliv.xml");
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        public void ListDolivaChanged(Object sender, EventArgs args)
         {
-
+            MainTableDoliv p = (MainTableDoliv)sender;
+            data.ListDoliva = p.ListDoliva;
+            data.Save("Doliv.xml");
         }
+
+        #endregion
     }
 }

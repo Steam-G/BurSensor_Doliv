@@ -15,12 +15,19 @@ namespace BurSensor_Doliv
     {
         DataStorage data = new DataStorage();
 
+        // объявляем событие для контроля изменения листа информации по рейсу
+        public event EventHandler ListInfoReisChanged;
+
         private StructListInfoReis _ListInfoReis = new StructListInfoReis();
 
         public StructListInfoReis ListInfoReis
         {
             get => _ListInfoReis;
-            set => _ListInfoReis = value;
+            set {
+                _ListInfoReis = value;
+                if (ListInfoReisChanged != null)
+                    ListInfoReisChanged(this, new EventArgs());
+            }
         }
 
         public InfoReis()
@@ -87,5 +94,7 @@ namespace BurSensor_Doliv
             bindingSource.DataSource = table;
             return bindingSource;
         }
+
+
     }
 }

@@ -63,7 +63,7 @@
             this.btnOk.Location = new System.Drawing.Point(12, 419);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(222, 23);
-            this.btnOk.TabIndex = 10;
+            this.btnOk.TabIndex = 8;
             this.btnOk.Text = "Сохранить";
             this.btnOk.UseVisualStyleBackColor = true;
             // 
@@ -73,7 +73,7 @@
             this.btnClose.Location = new System.Drawing.Point(243, 419);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Отмена";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
@@ -133,7 +133,7 @@
             this.tb_Raschet.Location = new System.Drawing.Point(148, 19);
             this.tb_Raschet.Name = "tb_Raschet";
             this.tb_Raschet.Size = new System.Drawing.Size(151, 20);
-            this.tb_Raschet.TabIndex = 4;
+            this.tb_Raschet.TabIndex = 0;
             this.tb_Raschet.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // label5
@@ -150,7 +150,7 @@
             this.tb_SumRaznDoliv.Location = new System.Drawing.Point(160, 326);
             this.tb_SumRaznDoliv.Name = "tb_SumRaznDoliv";
             this.tb_SumRaznDoliv.Size = new System.Drawing.Size(151, 20);
-            this.tb_SumRaznDoliv.TabIndex = 8;
+            this.tb_SumRaznDoliv.TabIndex = 6;
             this.tb_SumRaznDoliv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // label9
@@ -167,7 +167,7 @@
             this.tb_Primechanie.Location = new System.Drawing.Point(160, 366);
             this.tb_Primechanie.Name = "tb_Primechanie";
             this.tb_Primechanie.Size = new System.Drawing.Size(151, 20);
-            this.tb_Primechanie.TabIndex = 9;
+            this.tb_Primechanie.TabIndex = 7;
             // 
             // label10
             // 
@@ -195,7 +195,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 148);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(306, 75);
-            this.groupBox1.TabIndex = 29;
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Расчетный объём";
             // 
@@ -213,7 +213,7 @@
             this.tb_RaschetSum.Location = new System.Drawing.Point(148, 45);
             this.tb_RaschetSum.Name = "tb_RaschetSum";
             this.tb_RaschetSum.Size = new System.Drawing.Size(151, 20);
-            this.tb_RaschetSum.TabIndex = 5;
+            this.tb_RaschetSum.TabIndex = 1;
             this.tb_RaschetSum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // groupBox2
@@ -225,7 +225,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 229);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(306, 75);
-            this.groupBox2.TabIndex = 30;
+            this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Фактический объём";
             // 
@@ -243,7 +243,7 @@
             this.tb_FactSum.Location = new System.Drawing.Point(148, 45);
             this.tb_FactSum.Name = "tb_FactSum";
             this.tb_FactSum.Size = new System.Drawing.Size(151, 20);
-            this.tb_FactSum.TabIndex = 7;
+            this.tb_FactSum.TabIndex = 1;
             this.tb_FactSum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // label12
@@ -260,7 +260,7 @@
             this.tb_Fact.Location = new System.Drawing.Point(148, 19);
             this.tb_Fact.Name = "tb_Fact";
             this.tb_Fact.Size = new System.Drawing.Size(151, 20);
-            this.tb_Fact.TabIndex = 6;
+            this.tb_Fact.TabIndex = 0;
             this.tb_Fact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // groupBox3
@@ -269,7 +269,7 @@
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(306, 46);
-            this.groupBox3.TabIndex = 31;
+            this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Тип элемента КНБК (СБТ, ЛБТ, ТБТ, УБТ)";
             // 

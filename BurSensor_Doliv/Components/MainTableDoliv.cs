@@ -15,13 +15,19 @@ namespace BurSensor_Doliv.Components
     public partial class MainTableDoliv : UserControl
     {
         //DataListDoliva ListDoliva = new DataListDoliva();
+        // объявляем событие для контроля изменения листа долива
+        public event EventHandler ListDolivaChanged;
 
         private List<StructListDoliva> _ListDoliva = new List<StructListDoliva>();
 
         public List<StructListDoliva> ListDoliva
         {
             get => _ListDoliva;
-            set => _ListDoliva = value;
+            set {
+                _ListDoliva = value;
+                if (ListDolivaChanged != null)
+                    ListDolivaChanged(this, new EventArgs());
+            } 
         }
 
         private List<StructListInfoTable> _ListKNBK = new List<StructListInfoTable>();
@@ -33,8 +39,6 @@ namespace BurSensor_Doliv.Components
         }
 
 
-        // объявляем событие для контроля изменения листа КНБК
-        public event EventHandler ListDolivaChanged;
 
         public MainTableDoliv()
         {
@@ -46,7 +50,6 @@ namespace BurSensor_Doliv.Components
         {
             dgv_Doliv.Columns.Clear();
             dgv_Doliv.DataSource = GetBindingSourceInfoTable();
-            ListDolivaChanged?.Invoke(this, new EventArgs());
         }
 
         public BindingSource GetBindingSourceInfoTable()
@@ -111,6 +114,9 @@ namespace BurSensor_Doliv.Components
 
             //Обновляем таблицу
             RefreshTable();
+
+            // Генерируем событие о изменении листа долива
+            ListDolivaChanged?.Invoke(this, new EventArgs());
         }
     }
 }

@@ -33,7 +33,7 @@ namespace BurSensor_Doliv.OtherForm
         }
 
         public string TypeKNBK              { get => cb_TypeKNBK.Text;                              set => cb_TypeKNBK.Text = value; }
-        public int SvechaCapacity           { get => Convert.ToInt32(tb_SvechaCapacity.Text);       set => tb_SvechaCapacity.Text = value.ToString(); }
+        public int SvechaCapacity           { get => tb_SvechaCapacity.Text == "" ? 0 : Convert.ToInt32(tb_SvechaCapacity.Text); set => tb_SvechaCapacity.Text = value.ToString(); }
         public double MeraBurInstrument     { get => Convert.ToDouble(tb_MeraBurInstrument.Text);   set => tb_MeraBurInstrument.Text = value.ToString(); }
         public double ObyemJidkostiDoliv    { get => Convert.ToDouble(tb_ObyemJidkostiDoliv.Text);  set => tb_ObyemJidkostiDoliv.Text = value.ToString(); }
         public double Raschet               { get => Convert.ToDouble(tb_Raschet.Text);             set => tb_Raschet.Text = value.ToString(); }
@@ -45,9 +45,10 @@ namespace BurSensor_Doliv.OtherForm
 
         private void Tb_numb_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == ',') e.KeyChar = '.';
             char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8 && number != 46) // цифры, клавиша BackSpace и запятая
-            {
+            if (!Char.IsDigit(number) && number != 8 && number != 46 && number != 44 && number != 45) // цифры, клавиша BackSpace, точка, запятая и минус
+            { 
                 e.Handled = true;
             }
         }
