@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbData = new System.Windows.Forms.DataGridView();
             this.ColHead = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -44,6 +45,17 @@
             // tbData
             // 
             this.tbData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tbData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.tbData.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.tbData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tbData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tbData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tbData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColHead,
@@ -51,8 +63,12 @@
             this.tbData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbData.Location = new System.Drawing.Point(0, 0);
             this.tbData.Name = "tbData";
+            this.tbData.RowHeadersVisible = false;
+            this.tbData.ShowEditingIcon = false;
+            this.tbData.ShowRowErrors = false;
             this.tbData.Size = new System.Drawing.Size(356, 155);
             this.tbData.TabIndex = 0;
+            this.tbData.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tbData_CellValueChanged);
             // 
             // ColHead
             // 
@@ -90,6 +106,17 @@
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 1;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(281, 1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Обновить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -100,22 +127,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Информация о рейсе";
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(281, 1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Обновить";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // infoReis
+            // InfoReis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
-            this.Name = "infoReis";
+            this.Name = "InfoReis";
             this.Size = new System.Drawing.Size(356, 184);
             ((System.ComponentModel.ISupportInitialize)(this.tbData)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);

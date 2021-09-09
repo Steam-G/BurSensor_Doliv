@@ -1,4 +1,5 @@
-﻿using Sys_components;
+﻿using BurSensor_Doliv.Data;
+using Sys_components;
 using Sys_components.Elements;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace BurSensor_Doliv
         // Список объектов, включающих в себя имя параметра и его значение (PropertyName, Value)
         private List<AlphaDataClass> _SmallProperty = new List<AlphaDataClass>();
 
+        private StructListInfoReis _listInfoReis = new StructListInfoReis();
+
         public DataStorage DataStorage
         {
             get { return _dataStorage; }
@@ -31,6 +34,12 @@ namespace BurSensor_Doliv
         {
             get { return _SmallProperty; }
             set { _SmallProperty = value; }
+        }
+
+        public StructListInfoReis ListInfoReis
+        {
+            get { return _listInfoReis; }
+            set { _listInfoReis = value; }
         }
 
         public ToolStripStatusLabel StatusLabel

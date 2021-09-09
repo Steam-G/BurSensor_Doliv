@@ -91,10 +91,55 @@ namespace BurSensor_Doliv
             table.Rows[9][1] = _ListInfoReis.ValPlotnostBRStr;
             table.Rows[10][1] = _ListInfoReis.ValTimeStartSPOStr;
 
+            table.Columns[0].ReadOnly = true;
+
             bindingSource.DataSource = table;
             return bindingSource;
         }
 
-
+        private void tbData_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                switch (e.RowIndex)
+                {
+                    case 0:
+                        _ListInfoReis.ValMestorojdenieStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 1:
+                        _ListInfoReis.ValKustStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 2:
+                        _ListInfoReis.ValSkvajinaStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 3:
+                        _ListInfoReis.ValBrigadaStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 4:
+                        _ListInfoReis.ValBurilshikStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 5:
+                        _ListInfoReis.ValOtvZaZapolnenieListaDolivaStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 6:
+                        _ListInfoReis.ValOtvZaUchetKolichestvaBIStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 7:
+                        _ListInfoReis.ValZaboiStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 8:
+                        _ListInfoReis.ValPrichinaSPOStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 9:
+                        _ListInfoReis.ValPlotnostBRStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                    case 10:
+                        _ListInfoReis.ValTimeStartSPOStr = tbData[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        break;
+                }
+                ListInfoReisChanged?.Invoke(this, new EventArgs());
+                Refresh();
+            }
+        }
     }
 }

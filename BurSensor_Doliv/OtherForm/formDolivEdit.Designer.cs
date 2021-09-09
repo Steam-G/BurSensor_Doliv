@@ -185,6 +185,7 @@
             this.cb_TypeKNBK.Name = "cb_TypeKNBK";
             this.cb_TypeKNBK.Size = new System.Drawing.Size(293, 21);
             this.cb_TypeKNBK.TabIndex = 0;
+            this.cb_TypeKNBK.SelectedIndexChanged += new System.EventHandler(this.cb_TypeKNBK_SelectedIndexChanged);
             // 
             // groupBox1
             // 

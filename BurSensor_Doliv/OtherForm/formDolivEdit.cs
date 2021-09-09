@@ -43,6 +43,8 @@ namespace BurSensor_Doliv.OtherForm
         public double SumRaznDoliv          { get => Convert.ToDouble(tb_SumRaznDoliv.Text);        set => tb_SumRaznDoliv.Text = value.ToString(); }
         public string Primechanie           { get => tb_Primechanie.Text;                           set => tb_Primechanie.Text = value; }
 
+        public int TypeKNBKindex = 0;
+
         private void Tb_numb_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == ',') e.KeyChar = '.';
@@ -51,6 +53,11 @@ namespace BurSensor_Doliv.OtherForm
             { 
                 e.Handled = true;
             }
+        }
+
+        private void cb_TypeKNBK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TypeKNBKindex = cb_TypeKNBK.SelectedIndex;
         }
     }
 }
