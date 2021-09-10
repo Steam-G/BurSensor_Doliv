@@ -92,23 +92,24 @@ namespace BurSensor_Doliv.Components
         private void btn_Add_Click(object sender, EventArgs e)
         {
             // Создаем форму
-            formDolivEdit dolivEdit = new formDolivEdit(ListKNBK);
+            formDolivEdit dolivEdit = new formDolivEdit(ListKNBK, _ListDoliva[_ListDoliva.Count-1]);
             //dolivEdit.ListKNBK = ListKNBK;
             // Отображаем форму
             if (dolivEdit.ShowDialog() != DialogResult.OK) return;
             // Создаем и заполняем структуру даннаых
             StructListDoliva listDoliva = new StructListDoliva();
-            listDoliva.TypeKNBK = dolivEdit.TypeKNBK;
-            listDoliva.SvechaCapacity = dolivEdit.SvechaCapacity;
-            listDoliva.MeraBurInstrument = dolivEdit.MeraBurInstrument;
-            listDoliva.ObyemJidkostiDoliv = dolivEdit.ObyemJidkostiDoliv;
-            listDoliva.Raschet = dolivEdit.Raschet;
-            listDoliva.RaschetSum = dolivEdit.RaschetSum;
-            listDoliva.Fact = dolivEdit.Fact;
-            listDoliva.FactSum = dolivEdit.FactSum;
-            listDoliva.SumRaznDoliv = dolivEdit.SumRaznDoliv;
-            listDoliva.Primechanie = dolivEdit.Primechanie;
-
+            
+                listDoliva.TypeKNBK = dolivEdit.TypeKNBK;
+                listDoliva.SvechaCapacity = dolivEdit.SvechaCapacity;
+                listDoliva.MeraBurInstrument = dolivEdit.MeraBurInstrument;
+                listDoliva.ObyemJidkostiDoliv = dolivEdit.ObyemJidkostiDoliv;
+                listDoliva.Raschet = dolivEdit.Raschet;
+                listDoliva.RaschetSum = dolivEdit.RaschetSum;
+                listDoliva.Fact = dolivEdit.Fact;
+                listDoliva.FactSum = dolivEdit.FactSum;
+                listDoliva.SumRaznDoliv = dolivEdit.SumRaznDoliv;
+                listDoliva.Primechanie = dolivEdit.Primechanie;
+           
             // Вносим строку в таблицу
             _ListDoliva.Add(listDoliva);
 

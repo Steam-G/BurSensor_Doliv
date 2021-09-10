@@ -14,6 +14,7 @@ namespace BurSensor_Doliv.OtherForm
     public partial class formDolivEdit : Form
     {
         private List<StructListInfoTable> _ListKNBK = new List<StructListInfoTable>();
+        private StructListDoliva _lastDoliv = new StructListDoliva();
 
         public List<StructListInfoTable> ListKNBK
         {
@@ -21,10 +22,18 @@ namespace BurSensor_Doliv.OtherForm
             set => _ListKNBK = value;
         }
 
-        public formDolivEdit(List<StructListInfoTable> listKNBK)
+        public StructListDoliva LastDoliv
+        {
+            get => _lastDoliv;
+            set => _lastDoliv = value;
+        }
+
+        public formDolivEdit(List<StructListInfoTable> listKNBK, StructListDoliva lastDoliv)
         {
             InitializeComponent();
             //cb_TypeKNBK.Items.AddRange(new string[] { "KNBK1", "KNBK2", "KNBK3", "KNBK4", "KNBK5" });
+            ListKNBK = listKNBK;
+            LastDoliv = lastDoliv;
             
             foreach (var item in listKNBK)
             {
@@ -58,6 +67,66 @@ namespace BurSensor_Doliv.OtherForm
         private void cb_TypeKNBK_SelectedIndexChanged(object sender, EventArgs e)
         {
             TypeKNBKindex = cb_TypeKNBK.SelectedIndex;
+
+            try
+            {
+                Raschet = (MeraBurInstrument - LastDoliv.MeraBurInstrument) * ListKNBK[TypeKNBKindex].V2;
+            }
+            catch { }
+        }
+
+        private void tb_Raschet_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RaschetSum = LastDoliv.RaschetSum + Raschet;
+            }
+            catch { }
+        }
+
+        private void tb_RaschetSum_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SumRaznDoliv = RaschetSum + FactSum;
+            }
+            catch { }
+        }
+
+        private void tb_ObyemJidkostiDoliv_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Fact = ObyemJidkostiDoliv - LastDoliv.ObyemJidkostiDoliv;
+            }
+            catch { }
+        }
+
+        private void tb_MeraBurInstrument_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Raschet = (MeraBurInstrument - LastDoliv.MeraBurInstrument) * ListKNBK[TypeKNBKindex].V2;
+            }
+            catch { }
+        }
+
+        private void tb_Fact_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                FactSum = LastDoliv.FactSum + Fact;
+            }
+            catch { }
+        }
+
+        private void tb_FactSum_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SumRaznDoliv = FactSum - RaschetSum;
+            }
+            catch { }
         }
     }
 }

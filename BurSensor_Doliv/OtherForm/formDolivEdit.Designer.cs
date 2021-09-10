@@ -100,6 +100,7 @@
             this.tb_MeraBurInstrument.Name = "tb_MeraBurInstrument";
             this.tb_MeraBurInstrument.Size = new System.Drawing.Size(151, 20);
             this.tb_MeraBurInstrument.TabIndex = 2;
+            this.tb_MeraBurInstrument.TextChanged += new System.EventHandler(this.tb_MeraBurInstrument_TextChanged);
             this.tb_MeraBurInstrument.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // label3
@@ -117,6 +118,7 @@
             this.tb_ObyemJidkostiDoliv.Name = "tb_ObyemJidkostiDoliv";
             this.tb_ObyemJidkostiDoliv.Size = new System.Drawing.Size(151, 20);
             this.tb_ObyemJidkostiDoliv.TabIndex = 3;
+            this.tb_ObyemJidkostiDoliv.TextChanged += new System.EventHandler(this.tb_ObyemJidkostiDoliv_TextChanged);
             this.tb_ObyemJidkostiDoliv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // label4
@@ -134,6 +136,7 @@
             this.tb_Raschet.Name = "tb_Raschet";
             this.tb_Raschet.Size = new System.Drawing.Size(151, 20);
             this.tb_Raschet.TabIndex = 0;
+            this.tb_Raschet.TextChanged += new System.EventHandler(this.tb_Raschet_TextChanged);
             this.tb_Raschet.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // label5
@@ -215,6 +218,7 @@
             this.tb_RaschetSum.Name = "tb_RaschetSum";
             this.tb_RaschetSum.Size = new System.Drawing.Size(151, 20);
             this.tb_RaschetSum.TabIndex = 1;
+            this.tb_RaschetSum.TextChanged += new System.EventHandler(this.tb_RaschetSum_TextChanged);
             this.tb_RaschetSum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // groupBox2
@@ -245,6 +249,7 @@
             this.tb_FactSum.Name = "tb_FactSum";
             this.tb_FactSum.Size = new System.Drawing.Size(151, 20);
             this.tb_FactSum.TabIndex = 1;
+            this.tb_FactSum.TextChanged += new System.EventHandler(this.tb_FactSum_TextChanged);
             this.tb_FactSum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // label12
@@ -262,6 +267,7 @@
             this.tb_Fact.Name = "tb_Fact";
             this.tb_Fact.Size = new System.Drawing.Size(151, 20);
             this.tb_Fact.TabIndex = 0;
+            this.tb_Fact.TextChanged += new System.EventHandler(this.tb_Fact_TextChanged);
             this.tb_Fact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tb_numb_KeyPress);
             // 
             // groupBox3
