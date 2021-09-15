@@ -25,6 +25,9 @@ namespace BurSensor_Doliv
 
         private StructListInfoReis _listInfoReis = new StructListInfoReis();
 
+        // объявляем событие для контроля изменения параметра долива
+        public event EventHandler ValDolivChanged;
+
         public DataStorage DataStorage
         {
             get { return _dataStorage; }
@@ -238,8 +241,17 @@ namespace BurSensor_Doliv
                             // потому требуется сместиться на неколько пакетов (i-1)*1514 чтобы попасть в нужные отрезок
                             
                             if (indexOfSubstring > -1)
+                            {
+                                var val = BitConverter.ToSingle(data, indexOfSubstring + 14 + 4 + 4 - 1514 * (i - 1));
+
+                                SmallProperty[0].Value = val.ToString("#.##");
+                                _dataStorage.ObemJidkosti = val;
+
+                                // Генерируем событие о изменении листа КНБК
+                                ValDolivChanged?.Invoke(this, new EventArgs());
+                            }
                             SmallProperty[0].Value = BitConverter.ToSingle(data, indexOfSubstring + 14 + 4 + 4 - 1514 * (i - 1)).ToString("#.##");
-                            //_dataStorage.ObemJidkosti = val;
+                            
                             //SmallProperty[2].Value = BitConverter.ToDouble(data, indexOfSubstring + 18 + 8 - 1514).ToString("#.##");
 
                             response.Clear();

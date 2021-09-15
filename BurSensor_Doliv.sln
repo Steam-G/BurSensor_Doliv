@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurSensor_Doliv", "BurSenso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sys_components", "System\Sys_components\Sys_components.csproj", "{4DA7FE7F-20E2-4BCA-A64B-39E3841C950B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelGen_Prot", "ExcelGen_Prot\ExcelGen_Prot.csproj", "{8FC7D8D8-052D-4E4E-A65A-D01B2A8C2DB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4DA7FE7F-20E2-4BCA-A64B-39E3841C950B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DA7FE7F-20E2-4BCA-A64B-39E3841C950B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DA7FE7F-20E2-4BCA-A64B-39E3841C950B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC7D8D8-052D-4E4E-A65A-D01B2A8C2DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC7D8D8-052D-4E4E-A65A-D01B2A8C2DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC7D8D8-052D-4E4E-A65A-D01B2A8C2DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC7D8D8-052D-4E4E-A65A-D01B2A8C2DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,6 +37,7 @@ namespace BurSensor_Doliv
             connectLeuza1.ConnectLeuza_Init();
             test();
 
+            connectLeuza1.LeuzaRegReceiver.ValDolivChanged += new EventHandler(ValDolivChanged);
             infoTable1.ListKNBKChanged += new EventHandler(ListKNBKChanged);
             infoReis1.ListInfoReisChanged += new EventHandler(ListInfoReisChanged);
             mainTableDoliv1.ListDolivaChanged += new EventHandler(ListDolivaChanged);
@@ -53,6 +54,12 @@ namespace BurSensor_Doliv
 
         #region События изменения данных
 
+        public void ValDolivChanged(Object sender, EventArgs args)
+        {
+            LeuzaRegReceiver p = (LeuzaRegReceiver)sender;
+            data.ObemJidkosti = p.DataStorage.ObemJidkosti;
+            data.Save("Doliv.xml");
+        }
         
         public void ListKNBKChanged(Object sender, EventArgs args)
         {
@@ -76,6 +83,7 @@ namespace BurSensor_Doliv
             data.ListDoliva = p.ListDoliva;
             data.Save("Doliv.xml");
         }
+
 
         #endregion
     }
