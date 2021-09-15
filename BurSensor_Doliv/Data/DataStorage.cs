@@ -598,10 +598,19 @@ namespace BurSensor_Doliv
 
         public static DataStorage LoadFromFile(string fileName)
         {
+            try
+            {
             using (var stream = new FileStream(fileName, FileMode.Open))
             {
                 var XML = new XmlSerializer(typeof(DataStorage));
                 return (DataStorage)XML.Deserialize(stream);
+            }
+
+            }
+            catch (Exception)
+            {
+
+                return new DataStorage();
             }
         }
     }
