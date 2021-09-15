@@ -15,6 +15,12 @@ namespace BurSensor_Doliv.Components
         LeuzaRegReceiver leuzaRegReceiver = new LeuzaRegReceiver();
         List<Control> _ListIndicators = new List<Control>();
 
+        public LeuzaRegReceiver LeuzaRegReceiver
+        {
+            get => leuzaRegReceiver;
+            set => leuzaRegReceiver = value;
+        }
+
         public ConnectLeuza()
         {
             InitializeComponent();
