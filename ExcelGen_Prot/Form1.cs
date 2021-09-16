@@ -54,6 +54,10 @@ namespace ExcelGen_Prot
                 oSheet.Columns[13].ColumnWidth = 9.57;
 
 
+
+                #region Шапка отчета
+
+                //Рисуем шапку отчета
                 // Выделяем диапазон ячеек от H1 до K1         
                 Excel.Range _excelCells1 = (Excel.Range)oSheet.get_Range("A1", "M1").Cells;
                 // Производим объединение
@@ -66,13 +70,241 @@ namespace ExcelGen_Prot
                 oSheet.get_Range("A1", "M1").Font.Name = "Arial Cyr";
                 oSheet.get_Range("A1", "M1").Font.Size = 20;
 
-                //Add table headers going cell by cell.
-                oSheet.Cells[2, 1] = "Тип элемента КНБК (СБТ, ЛБТ, ТБТ, УБТ)";
-                oSheet.Cells[2, 2] = "Last Name";
-                oSheet.Cells[2, 3] = "Full Name";
-                oSheet.Cells[2, 4] = "Salary";
+                //Подготовка позиций для шапки
+                _excelCells1 = (Excel.Range)oSheet.get_Range("A3", "B3").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("C3", "E3").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("A4", "B4").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("D4", "E4").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("F4", "J4").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("A5", "F5").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("G5", "M5").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("A6", "G6").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("H6", "M6").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("A7", "C7").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("G7", "M7").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("A8", "C8").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("F8", "G8").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("H8", "I8").Cells;
+                _excelCells1.Merge(Type.Missing);
+
+                CellHead(oSheet, 1, 3, "A3", "Месторождение:");
+                CellHead(oSheet, 6, 3, "F3", "Куст №");
+                CellHead(oSheet, 8, 3, "H3", "Скв. №");
+                CellHead(oSheet, 10, 3, "J3", "Дата:");
+                CellHead(oSheet, 1, 4, "A4", "Бригада №");
+                CellHead(oSheet, 4, 4, "D4", "Бурильщики:");
+                CellHead(oSheet, 1, 5, "A5", "Ответственные за заполнение листа долива:");
+                CellHead(oSheet, 1, 6, "A6", "Ответственные за учет кол-ва поднятого/спущенного БИ:");
+                CellHead(oSheet, 1, 7, "A7", "Забой скважины:");
+                CellHead(oSheet, 5, 7, "E7", "Причина/Цель СПО:");
+                CellHead(oSheet, 1, 8, "A8", "Плотность БР:");
+                CellHead(oSheet, 6, 8, "F8", "Время начала СПО:");
+
+                //Заполнение 
+                CellHeadVal(oSheet, 3, 3, "C3", "E3", "#value#"); // Месторождение
+                CellHeadVal(oSheet, 7, 3, "G3", "#value#"); // Куст №
+                CellHeadVal(oSheet, 9, 3, "I3", "#value#"); // Скв. №
+                CellHeadVal(oSheet, 11, 3, "K3", "#value#"); // Дата:
+                CellHeadVal(oSheet, 3, 4, "C4", "#value#"); // Бригада №
+                CellHeadVal(oSheet, 6, 4, "F4", "J4", "#value#");   // Бурильщики
+                CellHeadVal(oSheet, 7, 5, "G5", "M5", "#value#");   // Ответственные за заполнение листа долива:
+                CellHeadVal(oSheet, 8, 6, "H6", "M6", "#value#");   // Ответственные за учет кол-ва поднятого/спущенного БИ:
+                CellHeadVal(oSheet, 4, 7, "D7", "#value#"); // Забой скважины: 
+                CellHeadVal(oSheet, 7, 7, "G7", "M7", "#value#");   // Причина/Цель СПО:
+                CellHeadVal(oSheet, 4, 8, "D8", "#value#"); // Плотность БР:
+                CellHeadVal(oSheet, 8, 8, "H8", "I8", "#value#"); // Время начала СПО:
+
+                #endregion
+
+                #region Таблица отчета
+                // Заготовка шапки таблицы
+                _excelCells1 = PaintBorderAllLine(oSheet, "A10", "M11", Excel.XlBorderWeight.xlThin);
+                _excelCells1 = PaintBorderOutLine(oSheet, "A10", "B11", Excel.XlBorderWeight.xlMedium);
+                _excelCells1 = PaintBorderOutLine(oSheet, "C10", "D11", Excel.XlBorderWeight.xlMedium);
+                _excelCells1 = PaintBorderOutLine(oSheet, "E10", "E11", Excel.XlBorderWeight.xlMedium);
+                _excelCells1 = PaintBorderOutLine(oSheet, "F10", "F11", Excel.XlBorderWeight.xlMedium);
+                _excelCells1 = PaintBorderOutLine(oSheet, "G10", "H11", Excel.XlBorderWeight.xlMedium);
+                _excelCells1 = PaintBorderOutLine(oSheet, "I10", "J11", Excel.XlBorderWeight.xlMedium);
+                _excelCells1 = PaintBorderOutLine(oSheet, "K10", "K11", Excel.XlBorderWeight.xlMedium);
+                _excelCells1 = PaintBorderOutLine(oSheet, "L10", "M11", Excel.XlBorderWeight.xlMedium);
+
+                //oSheet.UsedRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick, Excel.XlColorIndex.xlColorIndexAutomatic);
+
+                oSheet.Rows[10].RowHeight = 15.75;
+                oSheet.Rows[11].RowHeight = 64.5;
+
+                _excelCells1 = (Excel.Range)oSheet.get_Range("A10", "B11").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("C10", "D11").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("E10", "E11").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("F10", "F11").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("G10", "H10").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("I10", "J10").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("K10", "K11").Cells;
+                _excelCells1.Merge(Type.Missing);
+                _excelCells1 = (Excel.Range)oSheet.get_Range("L10", "M11").Cells;
+                _excelCells1.Merge(Type.Missing);
+
+                CellTableHead(oSheet, 1, 10, "A10", "Тип элемента КНБК\n(СБТ, ЛБТ, ТБТ, УБТ)");
+                CellTableHead(oSheet, 3, 10, "C10", "Кол-во свечей");
+                CellTableHead(oSheet, 5, 10, "E10", "Мера бур. инструмента, м");
+                CellTableHead(oSheet, 6, 10, "F10", "Объем жидк. в доливной емк., м3");
+                CellTableHead(oSheet, 7, 10, "G10", "Расчётный объём долива / вытеснения");
+                CellTableHead(oSheet, 7, 11, "G11", "объем,       м3");
+                CellTableHead(oSheet, 8, 11, "H11", "сумм. объем, м3");
+                CellTableHead(oSheet, 9, 10, "I10", "Фактический объём долива / вытеснения");
+                CellTableHead(oSheet, 9, 11, "I11", "объем,     м3");
+                CellTableHead(oSheet, 10, 11, "J11", "сумм. объем, м3");
+                CellTableHead(oSheet, 11, 10, "K10", "Суммарная нарастающая разница объема долива/вытеснения,м3");
+                CellTableHead(oSheet, 12, 10, "L10", "Примечание (наличие/отсутствие сифона и т.д.)");
+
+
+
+                #endregion
+
+                #region Справочная информация отчета
+
+                #endregion
+
+                #region Подвал отчета
+
+                #endregion
+
+                ////Add table headers going cell by cell.
+                //oSheet.Cells[2, 1] = "Тип элемента КНБК (СБТ, ЛБТ, ТБТ, УБТ)";
+                //oSheet.Cells[2, 2] = "Last Name";
+                //oSheet.Cells[2, 3] = "Full Name";
+                //oSheet.Cells[2, 4] = "Salary";
             }
             catch { }
+        }
+
+        private static Excel.Range PaintBorderAllLine(Excel._Worksheet oSheet, string XY1, string XY2, Microsoft.Office.Interop.Excel.XlBorderWeight borderWeight)
+        {
+            Excel.Range _excelCells1 = (Excel.Range)oSheet.get_Range(XY1, XY2).Cells;
+            Microsoft.Office.Interop.Excel.XlBordersIndex BorderIndex;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeTop;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlInsideHorizontal;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlInsideVertical;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            return _excelCells1;
+        }
+
+        private static Excel.Range PaintBorderOutLine(Excel._Worksheet oSheet, string XY1, string XY2, Microsoft.Office.Interop.Excel.XlBorderWeight borderWeight)
+        {
+            Excel.Range _excelCells1 = (Excel.Range)oSheet.get_Range(XY1, XY2).Cells;
+            Microsoft.Office.Interop.Excel.XlBordersIndex BorderIndex;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeTop;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft;
+            _excelCells1.Borders[BorderIndex].Weight = borderWeight;
+            _excelCells1.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCells1.Borders[BorderIndex].ColorIndex = 0;
+
+            return _excelCells1;
+        }
+
+        private static void CellHead(Excel._Worksheet oSheet, int X, int Y, string XY, string HeadName)
+        {
+            oSheet.Cells[Y, X] = HeadName;
+            var cl = oSheet.get_Range(XY);
+            cl.Font.Bold = true;
+            cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            cl.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            cl.Font.Name = "Arial Cyr";
+            cl.Font.Size = 12;
+        }
+
+        private static void CellHeadVal(Excel._Worksheet oSheet, int X, int Y, string XY1, string HeadName)
+        {
+            oSheet.Cells[Y, X] = HeadName;
+            var cl = oSheet.get_Range(XY1);
+            cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            cl.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            cl.Font.Name = "Arial Cyr";
+            cl.Font.Size = 12;
+
+            Microsoft.Office.Interop.Excel.XlBordersIndex BorderIndex;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom;
+            cl.Borders[BorderIndex].Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
+            cl.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            cl.Borders[BorderIndex].ColorIndex = 0;
+        }
+
+        private static void CellHeadVal(Excel._Worksheet oSheet, int X, int Y, string XY1, string XY2, string HeadName)
+        {
+            oSheet.Cells[Y, X] = HeadName;
+            var cl = oSheet.get_Range(XY1, XY2);
+            cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            cl.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            cl.Font.Name = "Arial Cyr";
+            cl.Font.Size = 12;
+
+            Microsoft.Office.Interop.Excel.XlBordersIndex BorderIndex;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom;
+            cl.Borders[BorderIndex].Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
+            cl.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            cl.Borders[BorderIndex].ColorIndex = 0;
+        }
+
+        private static void CellTableHead(Excel._Worksheet oSheet, int X, int Y, string XY, string HeadName)
+        {
+            oSheet.Cells[Y, X] = HeadName;
+            var cl = oSheet.get_Range(XY);
+            cl.Font.Bold = true;
+            cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            cl.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            cl.Font.Name = "Arial Cyr";
+            cl.Font.Size = 12;
+            cl.WrapText = true;
         }
     }
 }
