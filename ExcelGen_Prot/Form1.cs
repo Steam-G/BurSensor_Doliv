@@ -176,7 +176,15 @@ namespace ExcelGen_Prot
                 CellTableHead(oSheet, 11, 10, "K10", "Суммарная нарастающая разница объема долива/вытеснения,м3");
                 CellTableHead(oSheet, 12, 10, "L10", "Примечание (наличие/отсутствие сифона и т.д.)");
 
+                string[,] testDatas = { 
+                    {"кнбк","1","38.8","2.81","0.18", "0.18","0.17","0.17","-0.01","примечание"},
+                    {"СБТ-89х9","1","38.8","2.81","0.18", "0.18","0.17","0.17","-0.01","примечание"},
+                    {"УБТ 108","1","38.8","2.81","0.18", "0.18","0.17","0.17","-0.01","примечание"},
+                    {"ЯС","1","38.8","2.81","0.18", "0.18","0.17","0.17","-0.01","примечание"},
+                    {"СБТ-89х9","1","38.8","2.81","0.18", "0.18","0.17","0.17","-0.01","примечание"},
+                };
 
+                FillTable(oSheet, testDatas);
 
                 #endregion
 
@@ -195,6 +203,69 @@ namespace ExcelGen_Prot
                 //oSheet.Cells[2, 4] = "Salary";
             }
             catch { }
+        }
+
+        private void FillTable(Excel._Worksheet oSheet, string[,] testDatas)
+        {
+            int countRow = testDatas.GetLength(0);
+            int countColumn = testDatas.GetLength(1);
+            int[] columnPosition = {1,3,5,6,7,8,9,10,11,12 };
+            string[,] columnMergePositionX1X2 = {
+                {"A","B"},
+                {"C","D"},
+                {"E","E"},
+                {"F","F"},
+                {"G","G"},
+                {"H","H"},
+                {"I","I"},
+                {"J","J"},
+                {"K","K"},
+                {"L","M"}
+            };
+
+            for (int k = 0; k < countRow; k++)
+                for (int i = 0; i < countColumn; i++)
+                {
+                    string X1, X2;
+                    X1 = columnMergePositionX1X2[i, 0] + (12 + k).ToString();
+                    X2 = columnMergePositionX1X2[i, 1] + (12 + k).ToString();
+                    Excel.Range _excelCellsData = (Excel.Range)oSheet.get_Range(X1, X2).Cells;
+                    _excelCellsData.Merge(Type.Missing);
+                    oSheet.Cells[12+k, columnPosition[i]] = testDatas[k, i];
+
+                    var cl = oSheet.get_Range(X1);
+                    cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    cl.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    cl.Font.Name = "Arial Cyr";
+                    cl.Font.Size = 12;
+
+                    if (i == 5 || i == 7 || i == 8)
+                        cl.Font.Bold = true;
+                    else cl.Font.Bold = false;
+
+                    Microsoft.Office.Interop.Excel.XlBordersIndex BorderIndex;
+                    BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft;
+                    _excelCellsData.Borders[BorderIndex].Weight = Excel.XlBorderWeight.xlMedium;
+                    _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+                    BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom;
+                    _excelCellsData.Borders[BorderIndex].Weight = Excel.XlBorderWeight.xlThin;
+                    _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+                    BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight;
+                    _excelCellsData.Borders[BorderIndex].Weight = Excel.XlBorderWeight.xlMedium;
+                    _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+
+                    if (i==5 || i== 7)
+                    {
+                        BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft;
+                        _excelCellsData.Borders[BorderIndex].Weight = Excel.XlBorderWeight.xlThin;
+                        _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+                    }
+                }
+            //throw new NotImplementedException();
         }
 
         private static Excel.Range PaintBorderAllLine(Excel._Worksheet oSheet, string XY1, string XY2, Microsoft.Office.Interop.Excel.XlBorderWeight borderWeight)
