@@ -184,15 +184,31 @@ namespace ExcelGen_Prot
                     {"СБТ-89х9","1","38.8","2.81","0.18", "0.18","0.17","0.17","-0.01","примечание"},
                 };
 
+                // Заполняем таблицу полученными данными
                 FillTable(oSheet, testDatas);
 
                 #endregion
 
                 #region Справочная информация отчета
 
+                string[,] testInfoKNBK =
+                {
+                    {"СБТ-89х8", "0.002329", "0.006384"},
+                    {"СБТ-73х9,19", "0.002115", "0.004477" },
+                    {"СБТ-60х7,11", "0.001255", "0.002866" },
+                    {"УБТ-108", "0.0072", "0.0091" },
+                    {"ТБТ-89", "0.00427", "0.0055" }
+                };
+
+                int InfoTabStartRow = 12 + testDatas.GetLength(0); // 12 - строка начала данных, плюсуем количество строк данных
+
+                FillInfoKNBK(oSheet, InfoTabStartRow, testInfoKNBK);
+
                 #endregion
 
                 #region Подвал отчета
+
+                FillDungeon(oSheet, InfoTabStartRow);
 
                 #endregion
 
@@ -205,11 +221,136 @@ namespace ExcelGen_Prot
             catch { }
         }
 
+        private void FillDungeon(Excel._Worksheet oSheet, int iStartRow)
+        {
+            Microsoft.Office.Interop.Excel.XlBordersIndex BorderIndex;
+            BorderIndex = Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom;
+
+            Excel.Range _excelCellsData = (Excel.Range)oSheet.get_Range("B"+ (iStartRow+5).ToString(), "C" + (iStartRow + 5).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            _excelCellsData = (Excel.Range)oSheet.get_Range("D" + (iStartRow + 5).ToString(), "J" + (iStartRow + 5).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            _excelCellsData.Borders[BorderIndex].Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
+            _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+            _excelCellsData = (Excel.Range)oSheet.get_Range("K" + (iStartRow + 5).ToString(), "M" + (iStartRow + 5).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+
+            _excelCellsData = (Excel.Range)oSheet.get_Range("B" + (iStartRow + 7).ToString(), "C" + (iStartRow + 7).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            _excelCellsData = (Excel.Range)oSheet.get_Range("D" + (iStartRow + 7).ToString(), "J" + (iStartRow + 7).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            _excelCellsData.Borders[BorderIndex].Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
+            _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+            _excelCellsData = (Excel.Range)oSheet.get_Range("K" + (iStartRow + 7).ToString(), "M" + (iStartRow + 7).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+
+            _excelCellsData = (Excel.Range)oSheet.get_Range("B" + (iStartRow + 9).ToString(), "C" + (iStartRow + 9).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            _excelCellsData = (Excel.Range)oSheet.get_Range("D" + (iStartRow + 9).ToString(), "J" + (iStartRow + 9).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            _excelCellsData.Borders[BorderIndex].Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
+            _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+            _excelCellsData = (Excel.Range)oSheet.get_Range("K" + (iStartRow + 9).ToString(), "M" + (iStartRow + 9).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+
+            _excelCellsData = (Excel.Range)oSheet.get_Range("B" + (iStartRow + 11).ToString(), "C" + (iStartRow + 11).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            _excelCellsData = (Excel.Range)oSheet.get_Range("D" + (iStartRow + 11).ToString(), "J" + (iStartRow + 11).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            _excelCellsData.Borders[BorderIndex].Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
+            _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+            _excelCellsData = (Excel.Range)oSheet.get_Range("K" + (iStartRow + 11).ToString(), "M" + (iStartRow + 11).ToString()).Cells;
+            _excelCellsData.Merge(Type.Missing);
+
+            CellTableVal(oSheet, 2, iStartRow + 5, "B" + (iStartRow + 5).ToString(), "Бурильщик", 12,false, Excel.XlHAlign.xlHAlignLeft);
+            CellTableVal(oSheet, 2, iStartRow + 7, "B" + (iStartRow + 7).ToString(), "Мастер", 12, false, Excel.XlHAlign.xlHAlignLeft);
+            CellTableVal(oSheet, 2, iStartRow + 9, "B" + (iStartRow + 9).ToString(), "Супервайзер", 12, false, Excel.XlHAlign.xlHAlignLeft);
+            CellTableVal(oSheet, 2, iStartRow + 11, "B" + (iStartRow + 11).ToString(), "Оператор ГТИ", 12, false, Excel.XlHAlign.xlHAlignLeft);
+
+            CellTableVal(oSheet, 11, iStartRow + 5, "K" + (iStartRow + 5).ToString(), "/__________________/", 12, false, Excel.XlHAlign.xlHAlignLeft);
+            CellTableVal(oSheet, 11, iStartRow + 7, "K" + (iStartRow + 7).ToString(), "/__________________/", 12, false, Excel.XlHAlign.xlHAlignLeft);
+            CellTableVal(oSheet, 11, iStartRow + 9, "K" + (iStartRow + 9).ToString(), "/__________________/", 12, false, Excel.XlHAlign.xlHAlignLeft);
+            CellTableVal(oSheet, 11, iStartRow + 11, "K" + (iStartRow + 11).ToString(), "/__________________/", 12, false, Excel.XlHAlign.xlHAlignLeft);
+        }
+
+        private void FillInfoKNBK(Excel._Worksheet oSheet, int iStartRow, string[,] saInfoKNBK)
+        {
+            int countRow = 3;
+            int countColumn = saInfoKNBK.GetLength(0);
+
+            //Нарисуем заголовок
+            string X1, X2;
+            X1 = "C" + (iStartRow).ToString();
+            X2 = "I" + (iStartRow).ToString();
+            Excel.Range _excelCellsData = (Excel.Range)oSheet.get_Range(X1, X2).Cells;
+            _excelCellsData.Merge(Type.Missing);
+            oSheet.Cells[iStartRow, 3] = "Справочная информация";
+            var cl = oSheet.get_Range(X1);
+            cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            cl.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            cl.Font.Name = "Arial Cyr";
+            cl.Font.Size = 16;
+
+            //Нарисуем шапку таблицы
+
+            //Таблица начинается после заголовка с ряда "C", он должен быть объеденен с рядом "D"
+            for (int i=1; i<=3; i++)
+            {
+                //Слияние ячеек
+                _excelCellsData = (Excel.Range)oSheet.get_Range("C"+(iStartRow+i), "D" + (iStartRow + i)).Cells;
+                _excelCellsData.Merge(Type.Missing);
+                //Обводка ячеек
+                _excelCellsData = PaintBorderOutLine(oSheet, "C" + (iStartRow + i), "D" + (iStartRow + i), Excel.XlBorderWeight.xlMedium);
+            }
+
+            int row1 = iStartRow + 1;
+            int row2 = iStartRow + 2;
+            int row3 = iStartRow + 3;
+            //Заголовки
+            CellTableHead(oSheet, 3, row1, "C" + row1.ToString(), "Типоразмер БИ", 9);
+            CellTableHead(oSheet, 3, row2, "C" + row2.ToString(), "V п.м(металла)", 9);
+            CellTableHead(oSheet, 3, row3, "C" + row3.ToString(), "V п.м(металл + вн.полость)", 9);
+            //Высота рядов
+            oSheet.Rows[row1].RowHeight = 25.5;
+            oSheet.Rows[row2].RowHeight = 24.75;
+            oSheet.Rows[row3].RowHeight = 38.25;
+
+            char[] alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            for (int n = 0; n < saInfoKNBK.GetLength(0); n++) 
+            {
+                for (int k = 0; k < saInfoKNBK.GetLength(1); k++) 
+                {
+                    _excelCellsData = PaintBorderOutLine(oSheet, alpha[n + 4] + (iStartRow + k + 1).ToString(), alpha[n + 4] + (iStartRow + k + 1).ToString(), Excel.XlBorderWeight.xlMedium);
+
+                    if (n > 0)
+                    {
+                        Excel.XlBordersIndex BorderIndex;
+                        BorderIndex = Excel.XlBordersIndex.xlEdgeLeft;
+                        _excelCellsData.Borders[BorderIndex].Weight = Excel.XlBorderWeight.xlThin;
+                        _excelCellsData.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        _excelCellsData.Borders[BorderIndex].ColorIndex = 0;
+                    }
+
+                    int X = n + 5;
+                    int Y = iStartRow + k + 1;
+                    string XY = alpha[n + 4] + (iStartRow + k + 1).ToString();
+                    string sVal = saInfoKNBK[n, k];
+                    if (k == 0) CellTableHead(oSheet, n + 5, iStartRow + k + 1, alpha[n + 4] + (iStartRow + k + 1).ToString(), saInfoKNBK[n, k], 11);
+                    else CellTableVal(oSheet, n + 5, iStartRow + k + 1, alpha[n + 4] + (iStartRow + k + 1).ToString(), saInfoKNBK[n, k], 12, false);
+                }
+            }
+
+        }
+
         private void FillTable(Excel._Worksheet oSheet, string[,] testDatas)
         {
             int countRow = testDatas.GetLength(0);
             int countColumn = testDatas.GetLength(1);
-            int[] columnPosition = {1,3,5,6,7,8,9,10,11,12 };
+            int[] columnPosition = { 1, 3, 5, 6, 7, 8, 9, 10, 11, 12 };
             string[,] columnMergePositionX1X2 = {
                 {"A","B"},
                 {"C","D"},
@@ -376,6 +517,42 @@ namespace ExcelGen_Prot
             cl.Font.Name = "Arial Cyr";
             cl.Font.Size = 12;
             cl.WrapText = true;
+        }
+
+        private static void CellTableHead(Excel._Worksheet oSheet, int X, int Y, string XY, string HeadName, int FontSize=5)
+        {
+            oSheet.Cells[Y, X] = HeadName;
+            var cl = oSheet.get_Range(XY);
+            cl.Font.Bold = true;
+            cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            cl.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            cl.Font.Name = "Arial Cyr";
+            cl.Font.Size = FontSize;
+            cl.WrapText = true;
+        }
+
+        private static void CellTableVal(Excel._Worksheet oSheet, int X, int Y, string XY, string HeadName, int FontSize = 5, bool isBold = false)
+        {
+            oSheet.Cells[Y, X] = HeadName;
+            var cl = oSheet.get_Range(XY);
+            cl.Font.Bold = isBold;
+            cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            cl.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            cl.Font.Name = "Arial Cyr";
+            cl.Font.Size = FontSize;
+            cl.WrapText = false;
+        }
+
+        private static void CellTableVal(Excel._Worksheet oSheet, int X, int Y, string XY, string HeadName, int FontSize = 5, bool isBold = false, dynamic HAlign = null)
+        {
+            oSheet.Cells[Y, X] = HeadName;
+            var cl = oSheet.get_Range(XY);
+            cl.Font.Bold = isBold;
+            cl.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            cl.HorizontalAlignment = HAlign;
+            cl.Font.Name = "Arial Cyr";
+            cl.Font.Size = FontSize;
+            cl.WrapText = false;
         }
     }
 }
