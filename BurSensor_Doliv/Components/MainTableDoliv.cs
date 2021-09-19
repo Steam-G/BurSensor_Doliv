@@ -65,6 +65,19 @@ namespace BurSensor_Doliv.Components
         {
             dgv_Doliv.Columns.Clear();
             dgv_Doliv.DataSource = GetBindingSourceInfoTable();
+
+            if (_ListDoliva.Count<1)
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+                btn_Save_ExcelDoc.Enabled = false;
+            }
+            else
+            {
+                button1.Enabled = true;
+                button2.Enabled = true;
+                btn_Save_ExcelDoc.Enabled = true;
+            }
         }
 
         public BindingSource GetBindingSourceInfoTable()
@@ -155,7 +168,58 @@ namespace BurSensor_Doliv.Components
         int selectIndex = 0;
         private void button1_Click(object sender, EventArgs e)
         {
+            formDolivEdit dolivEdit;
+            // Создаем форму
+            if (dgv_Doliv.CurrentRow.Index > 0)
+                dolivEdit = new formDolivEdit(ListKNBK, _ListDoliva[dgv_Doliv.CurrentRow.Index - 1], false);
+            else
+                dolivEdit = new formDolivEdit(ListKNBK, new StructListDoliva(), false);
 
+            dolivEdit.ObyemJidkostiDoliv = _ObemJidkosti;
+            dolivEdit.TypeKNBK = _ListDoliva[dgv_Doliv.CurrentRow.Index].TypeKNBK;
+            dolivEdit.SvechaCapacity = _ListDoliva[dgv_Doliv.CurrentRow.Index].SvechaCapacity;
+            dolivEdit.MeraBurInstrument = _ListDoliva[dgv_Doliv.CurrentRow.Index].MeraBurInstrument;
+            dolivEdit.ObyemJidkostiDoliv = _ListDoliva[dgv_Doliv.CurrentRow.Index].ObyemJidkostiDoliv;
+            dolivEdit.Raschet = _ListDoliva[dgv_Doliv.CurrentRow.Index].Raschet;
+            dolivEdit.RaschetSum = _ListDoliva[dgv_Doliv.CurrentRow.Index].RaschetSum;
+            dolivEdit.Fact = _ListDoliva[dgv_Doliv.CurrentRow.Index].Fact;
+            dolivEdit.FactSum = _ListDoliva[dgv_Doliv.CurrentRow.Index].FactSum;
+            dolivEdit.SumRaznDoliv = _ListDoliva[dgv_Doliv.CurrentRow.Index].SumRaznDoliv;
+            dolivEdit.Primechanie = _ListDoliva[dgv_Doliv.CurrentRow.Index].Primechanie;
+            //dolivEdit.ListKNBK = ListKNBK;
+            // Отображаем форму
+            if (dolivEdit.ShowDialog() != DialogResult.OK) return;
+            // Создаем и заполняем структуру даннаых
+            StructListDoliva listDoliva = new StructListDoliva();
+
+            listDoliva.TypeKNBK = dolivEdit.TypeKNBK;
+            listDoliva.SvechaCapacity = dolivEdit.SvechaCapacity;
+            listDoliva.MeraBurInstrument = dolivEdit.MeraBurInstrument;
+            listDoliva.ObyemJidkostiDoliv = dolivEdit.ObyemJidkostiDoliv;
+            listDoliva.Raschet = dolivEdit.Raschet;
+            listDoliva.RaschetSum = dolivEdit.RaschetSum;
+            listDoliva.Fact = dolivEdit.Fact;
+            listDoliva.FactSum = dolivEdit.FactSum;
+            listDoliva.SumRaznDoliv = dolivEdit.SumRaznDoliv;
+            listDoliva.Primechanie = dolivEdit.Primechanie;
+
+            // Вносим строку в таблицу
+            _ListDoliva[dgv_Doliv.CurrentRow.Index] = listDoliva;
+            //Обновляем таблицу
+            RefreshTable();
+
+            // Генерируем событие о изменении листа долива
+            ListDolivaChanged?.Invoke(this, new EventArgs());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            _ListDoliva.RemoveAt(dgv_Doliv.CurrentRow.Index);
+            //Обновляем таблицу
+            RefreshTable();
+
+            // Генерируем событие о изменении листа долива
+            ListDolivaChanged?.Invoke(this, new EventArgs());
         }
     }
 }
