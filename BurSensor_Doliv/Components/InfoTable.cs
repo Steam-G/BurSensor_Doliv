@@ -108,5 +108,41 @@ namespace BurSensor_Doliv
             tb_Info.Columns.Clear();
             tb_Info.DataSource = GetBindingSourceInfoTable();
         }
+
+        private void InfoTable_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                _ListKNBK.RemoveAt(tb_Info.CurrentRow.Index);
+                Reload();
+
+                // Генерируем событие о изменении листа КНБК
+                ListKNBKChanged?.Invoke(this, new EventArgs());
+            }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Создаем форму
+                formInfoTableEdit tableEdit = new formInfoTableEdit();
+                tableEdit.strKNBK = _ListKNBK[tb_Info.CurrentRow.Index].TypeKNBK;
+                tableEdit.doublV1 = _ListKNBK[tb_Info.CurrentRow.Index].V1;
+                tableEdit.doublV2 = _ListKNBK[tb_Info.CurrentRow.Index].V2;
+
+                // отображаем форму
+                if (tableEdit.ShowDialog() != DialogResult.OK) return;
+
+                // создаем и заполняем структуру данных КНБК
+                Data.StructListInfoTable listInfoTable = new Data.StructListInfoTable();
+                listInfoTable.TypeKNBK = tableEdit.strKNBK;
+                listInfoTable.V1 = tableEdit.doublV1;
+                listInfoTable.V2 = tableEdit.doublV2;
+
+                _ListKNBK[tb_Info.CurrentRow.Index] = listInfoTable;
+                Reload();
+
+                // Генерируем событие о изменении листа КНБК
+                ListKNBKChanged?.Invoke(this, new EventArgs());
+            }
+        }
     }
 }

@@ -111,6 +111,7 @@
             this.tb_Info.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tb_Info.Size = new System.Drawing.Size(280, 126);
             this.tb_Info.TabIndex = 0;
+            this.tb_Info.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InfoTable_KeyDown);
             // 
             // Col1
             // 
@@ -135,6 +136,7 @@
             this.MinimumSize = new System.Drawing.Size(280, 165);
             this.Name = "InfoTable";
             this.Size = new System.Drawing.Size(280, 165);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InfoTable_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
