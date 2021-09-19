@@ -52,6 +52,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.tb_Fact = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chbAuto = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -60,7 +61,7 @@
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(12, 419);
+            this.btnOk.Location = new System.Drawing.Point(12, 426);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(222, 23);
             this.btnOk.TabIndex = 8;
@@ -70,7 +71,7 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(243, 419);
+            this.btnClose.Location = new System.Drawing.Point(243, 426);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 9;
@@ -80,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 67);
+            this.label2.Location = new System.Drawing.Point(15, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 13);
             this.label2.TabIndex = 10;
@@ -88,7 +89,7 @@
             // 
             // tb_SvechaCapacity
             // 
-            this.tb_SvechaCapacity.Location = new System.Drawing.Point(160, 64);
+            this.tb_SvechaCapacity.Location = new System.Drawing.Point(160, 82);
             this.tb_SvechaCapacity.Name = "tb_SvechaCapacity";
             this.tb_SvechaCapacity.Size = new System.Drawing.Size(151, 20);
             this.tb_SvechaCapacity.TabIndex = 1;
@@ -96,7 +97,7 @@
             // 
             // tb_MeraBurInstrument
             // 
-            this.tb_MeraBurInstrument.Location = new System.Drawing.Point(160, 90);
+            this.tb_MeraBurInstrument.Location = new System.Drawing.Point(160, 108);
             this.tb_MeraBurInstrument.Name = "tb_MeraBurInstrument";
             this.tb_MeraBurInstrument.Size = new System.Drawing.Size(151, 20);
             this.tb_MeraBurInstrument.TabIndex = 2;
@@ -106,7 +107,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 93);
+            this.label3.Location = new System.Drawing.Point(15, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 13);
             this.label3.TabIndex = 12;
@@ -114,7 +115,7 @@
             // 
             // tb_ObyemJidkostiDoliv
             // 
-            this.tb_ObyemJidkostiDoliv.Location = new System.Drawing.Point(160, 122);
+            this.tb_ObyemJidkostiDoliv.Location = new System.Drawing.Point(160, 140);
             this.tb_ObyemJidkostiDoliv.Name = "tb_ObyemJidkostiDoliv";
             this.tb_ObyemJidkostiDoliv.Size = new System.Drawing.Size(151, 20);
             this.tb_ObyemJidkostiDoliv.TabIndex = 3;
@@ -124,7 +125,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 116);
+            this.label4.Location = new System.Drawing.Point(15, 134);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(110, 26);
             this.label4.TabIndex = 14;
@@ -150,7 +151,7 @@
             // 
             // tb_SumRaznDoliv
             // 
-            this.tb_SumRaznDoliv.Location = new System.Drawing.Point(160, 326);
+            this.tb_SumRaznDoliv.Location = new System.Drawing.Point(160, 344);
             this.tb_SumRaznDoliv.Name = "tb_SumRaznDoliv";
             this.tb_SumRaznDoliv.Size = new System.Drawing.Size(151, 20);
             this.tb_SumRaznDoliv.TabIndex = 6;
@@ -159,7 +160,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 307);
+            this.label9.Location = new System.Drawing.Point(12, 325);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(141, 39);
             this.label9.TabIndex = 24;
@@ -167,7 +168,7 @@
             // 
             // tb_Primechanie
             // 
-            this.tb_Primechanie.Location = new System.Drawing.Point(160, 366);
+            this.tb_Primechanie.Location = new System.Drawing.Point(160, 384);
             this.tb_Primechanie.Name = "tb_Primechanie";
             this.tb_Primechanie.Size = new System.Drawing.Size(151, 20);
             this.tb_Primechanie.TabIndex = 7;
@@ -175,7 +176,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 360);
+            this.label10.Location = new System.Drawing.Point(12, 378);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(136, 26);
             this.label10.TabIndex = 26;
@@ -196,7 +197,7 @@
             this.groupBox1.Controls.Add(this.tb_RaschetSum);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_Raschet);
-            this.groupBox1.Location = new System.Drawing.Point(12, 148);
+            this.groupBox1.Location = new System.Drawing.Point(12, 166);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(306, 75);
             this.groupBox1.TabIndex = 4;
@@ -227,7 +228,7 @@
             this.groupBox2.Controls.Add(this.tb_FactSum);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.tb_Fact);
-            this.groupBox2.Location = new System.Drawing.Point(12, 229);
+            this.groupBox2.Location = new System.Drawing.Point(12, 247);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(306, 75);
             this.groupBox2.TabIndex = 5;
@@ -273,18 +274,30 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.cb_TypeKNBK);
-            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Location = new System.Drawing.Point(12, 30);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(306, 46);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Тип элемента КНБК (СБТ, ЛБТ, ТБТ, УБТ)";
             // 
+            // chbAuto
+            // 
+            this.chbAuto.AutoSize = true;
+            this.chbAuto.Location = new System.Drawing.Point(12, 7);
+            this.chbAuto.Name = "chbAuto";
+            this.chbAuto.Size = new System.Drawing.Size(203, 17);
+            this.chbAuto.TabIndex = 27;
+            this.chbAuto.Text = "Включить ручной ввод параметров";
+            this.chbAuto.UseVisualStyleBackColor = true;
+            this.chbAuto.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
             // formDolivEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 454);
+            this.ClientSize = new System.Drawing.Size(329, 461);
+            this.Controls.Add(this.chbAuto);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -338,5 +351,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tb_Fact;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox chbAuto;
     }
 }

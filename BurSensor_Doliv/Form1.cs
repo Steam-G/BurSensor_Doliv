@@ -29,6 +29,7 @@ namespace BurSensor_Doliv
             infoReis1.ListInfoReis = data.ListInfoReis;
             mainTableDoliv1.ListDoliva = data.ListDoliva;
             mainTableDoliv1.ListKNBK = data.ListKNBK;
+            mainTableDoliv1.ListInfoReis = data.ListInfoReis;
 
             infoTable1.Reload();
             mainTableDoliv1.RefreshTable();
@@ -58,6 +59,7 @@ namespace BurSensor_Doliv
         {
             LeuzaRegReceiver p = (LeuzaRegReceiver)sender;
             data.ObemJidkosti = p.DataStorage.ObemJidkosti;
+            mainTableDoliv1.ObemJidkosti = p.DataStorage.ObemJidkosti;
             data.Save("Doliv.xml");
         }
         
@@ -74,6 +76,7 @@ namespace BurSensor_Doliv
         {
             InfoReis p = (InfoReis)sender;
             data.ListInfoReis = p.ListInfoReis;
+            mainTableDoliv1.ListInfoReis = p.ListInfoReis;
             data.Save("Doliv.xml");
         }
 

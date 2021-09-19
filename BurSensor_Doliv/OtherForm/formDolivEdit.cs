@@ -28,13 +28,17 @@ namespace BurSensor_Doliv.OtherForm
             set => _lastDoliv = value;
         }
 
-        public formDolivEdit(List<StructListInfoTable> listKNBK, StructListDoliva lastDoliv)
+        bool autoCalc = true;
+
+        public formDolivEdit(List<StructListInfoTable> listKNBK, StructListDoliva lastDoliv, bool autoCalculate)
         {
             InitializeComponent();
             //cb_TypeKNBK.Items.AddRange(new string[] { "KNBK1", "KNBK2", "KNBK3", "KNBK4", "KNBK5" });
             ListKNBK = listKNBK;
             LastDoliv = lastDoliv;
-            
+            autoCalc = autoCalculate;
+            chbAuto.Checked = !autoCalculate;
+
             foreach (var item in listKNBK)
             {
                 cb_TypeKNBK.Items.Add(item.TypeKNBK);
@@ -70,6 +74,7 @@ namespace BurSensor_Doliv.OtherForm
 
             try
             {
+                if(autoCalc)
                 Raschet = (MeraBurInstrument - LastDoliv.MeraBurInstrument) * ListKNBK[TypeKNBKindex].V2;
             }
             catch { }
@@ -79,7 +84,8 @@ namespace BurSensor_Doliv.OtherForm
         {
             try
             {
-                RaschetSum = LastDoliv.RaschetSum + Raschet;
+                if (autoCalc)
+                    RaschetSum = LastDoliv.RaschetSum + Raschet;
             }
             catch { }
         }
@@ -88,7 +94,8 @@ namespace BurSensor_Doliv.OtherForm
         {
             try
             {
-                SumRaznDoliv = RaschetSum + FactSum;
+                if (autoCalc)
+                    SumRaznDoliv = RaschetSum + FactSum;
             }
             catch { }
         }
@@ -97,7 +104,8 @@ namespace BurSensor_Doliv.OtherForm
         {
             try
             {
-                Fact = ObyemJidkostiDoliv - LastDoliv.ObyemJidkostiDoliv;
+                if (autoCalc)
+                    Fact = ObyemJidkostiDoliv - LastDoliv.ObyemJidkostiDoliv;
             }
             catch { }
         }
@@ -106,7 +114,8 @@ namespace BurSensor_Doliv.OtherForm
         {
             try
             {
-                Raschet = (MeraBurInstrument - LastDoliv.MeraBurInstrument) * ListKNBK[TypeKNBKindex].V2;
+                if (autoCalc)
+                    Raschet = (MeraBurInstrument - LastDoliv.MeraBurInstrument) * ListKNBK[TypeKNBKindex].V2;
             }
             catch { }
         }
@@ -115,7 +124,8 @@ namespace BurSensor_Doliv.OtherForm
         {
             try
             {
-                FactSum = LastDoliv.FactSum + Fact;
+                if (autoCalc)
+                    FactSum = LastDoliv.FactSum + Fact;
             }
             catch { }
         }
@@ -124,9 +134,16 @@ namespace BurSensor_Doliv.OtherForm
         {
             try
             {
-                SumRaznDoliv = FactSum - RaschetSum;
+                if (autoCalc)
+                    SumRaznDoliv = FactSum - RaschetSum;
             }
             catch { }
+        }
+
+        private void chbAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            autoCalc = !chbAuto.Checked;
+            
         }
     }
 }

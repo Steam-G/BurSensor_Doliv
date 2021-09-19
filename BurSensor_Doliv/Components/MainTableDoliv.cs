@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BurSensor_Doliv.OtherForm;
 using BurSensor_Doliv.Data;
+using BurSensor_Doliv.Excel_doc;
 
 namespace BurSensor_Doliv.Components
 {
@@ -38,6 +39,20 @@ namespace BurSensor_Doliv.Components
             set => _ListKNBK = value;
         }
 
+        private StructListInfoReis _ListInfoReis = new StructListInfoReis();
+
+        public StructListInfoReis ListInfoReis
+        {
+            get => _ListInfoReis;
+            set => _ListInfoReis = value;
+        }
+
+        private Single _ObemJidkosti;
+        public Single ObemJidkosti
+        {
+            get => _ObemJidkosti;
+            set => _ObemJidkosti = value;
+        }
 
 
         public MainTableDoliv()
@@ -91,8 +106,14 @@ namespace BurSensor_Doliv.Components
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+            formDolivEdit dolivEdit;
             // Создаем форму
-            formDolivEdit dolivEdit = new formDolivEdit(ListKNBK, _ListDoliva[_ListDoliva.Count-1]);
+            if (_ListDoliva.Count>0)
+            dolivEdit = new formDolivEdit(ListKNBK, _ListDoliva[_ListDoliva.Count-1], true);
+            else
+            dolivEdit = new formDolivEdit(ListKNBK, new StructListDoliva(), false);
+
+            dolivEdit.ObyemJidkostiDoliv = _ObemJidkosti;
             //dolivEdit.ListKNBK = ListKNBK;
             // Отображаем форму
             if (dolivEdit.ShowDialog() != DialogResult.OK) return;
@@ -118,6 +139,23 @@ namespace BurSensor_Doliv.Components
 
             // Генерируем событие о изменении листа долива
             ListDolivaChanged?.Invoke(this, new EventArgs());
+        }
+
+        private void btn_Save_ExcelDoc_Click(object sender, EventArgs e)
+        {
+            DateTime date = DateTime.Now;
+            ExcelDocGen ExcelGen = new ExcelDocGen();
+            ExcelGen.Date = date;
+            ExcelGen.ListDoliva = _ListDoliva;
+            ExcelGen.ListInfoReis = _ListInfoReis;
+            ExcelGen.ListKNBK = _ListKNBK;
+            ExcelGen.GenerateExeleDoc();
+        }
+
+        int selectIndex = 0;
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
