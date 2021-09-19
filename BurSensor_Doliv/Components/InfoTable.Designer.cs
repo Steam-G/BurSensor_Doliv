@@ -106,9 +106,11 @@
             this.tb_Info.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_Info.Location = new System.Drawing.Point(0, 0);
             this.tb_Info.Name = "tb_Info";
+            this.tb_Info.ReadOnly = true;
             this.tb_Info.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.tb_Info.RowHeadersVisible = false;
             this.tb_Info.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tb_Info.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tb_Info.Size = new System.Drawing.Size(280, 126);
             this.tb_Info.TabIndex = 0;
             this.tb_Info.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InfoTable_KeyDown);
