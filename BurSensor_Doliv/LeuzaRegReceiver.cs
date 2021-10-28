@@ -244,6 +244,11 @@ namespace BurSensor_Doliv
             //_dataStorage.IpAddr = ip;
             const int port = 65004;
 
+            // Сохраним в параметрах этот IP
+            if (Properties.Settings.Default.defaultIP
+                != ip) Properties.Settings.Default.Save();
+
+
             //готовим токен отмены
             _tokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = _tokenSource.Token;
@@ -257,9 +262,9 @@ namespace BurSensor_Doliv
                 while (status)
                 {
 
-                    TcpClient client = new TcpClient();
-
+                    client = new TcpClient();
                     await client.ConnectAsync(ip, port);
+
                     //client.Connect(ip, port);
 
                     byte[] data = new byte[1514];
@@ -324,9 +329,7 @@ namespace BurSensor_Doliv
                         //    response.Clear();
                         //    i = 0;
                         //}
-                        // Сохраним в параметрах этот IP
-                        Properties.Settings.Default.defaultIP = ip;
-                        Properties.Settings.Default.Save();
+                        
                         //await Task.Delay(1);
                         if (!stream.DataAvailable)
                         {
@@ -371,15 +374,28 @@ namespace BurSensor_Doliv
                 //MessageBox.Show("Задача отменена.");
                 status = false;
             }
+            catch (ArgumentNullException e)
+            {
+                MessageBox.Show(e.Message + "\n\nIP адрес: "+ ip + "\nСетевой порт: " + port);
+                //Console.WriteLine("Exception: {0}", e.Message);
+            }
+            catch (ObjectDisposedException ex)
+            {
+                //server.Dispose();
+                //server = new UdpClient(port);
+                //MessageBox.Show(ex.Message);
+            }
             catch (Exception e)
             {
                 _StatusLabel.Text = string.Format("Помехи при приеме от {0} ", ip);
                 _StatusLabel.Font = new Font(_StatusLabel.Name, 9, FontStyle.Bold);
                 _StatusLabel.ForeColor = Color.DarkRed;
 
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message + "/nОтрабатываем ошибку");
                 //Console.WriteLine("Exception: {0}", e.Message);
             }
+
+
         }
 
         public static byte[] ReadFully(Stream input)
@@ -398,7 +414,7 @@ namespace BurSensor_Doliv
 
         private void tcpClientReadPacketRestart()
         {
-            tcpClientReadPacket(SmallProperty[0].Value);
+            tcpClientReadPacket(Properties.Settings.Default.defaultIP);
         }
 
         // не используется, но выглядит наглядно
@@ -413,7 +429,10 @@ namespace BurSensor_Doliv
 
         public void tcpClientReadPacketStop()
         {
-            _tokenSource.Cancel();
+            //_tokenSource.Cancel();
+            this._tokenSource?.Cancel();
+            this.client?.Close();
+            this._tokenSource?.Dispose();
         }
 
         public static string ByteArrayToString(byte[] ba)
