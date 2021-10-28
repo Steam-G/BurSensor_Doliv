@@ -58,7 +58,7 @@ namespace BurSensor_Doliv
             set => _ListInfoReis = value;
         }
 
-        private List<StructListDoliva> _ListDoliva;
+        private List<StructListDoliva> _ListDoliva = new List<StructListDoliva>();
 
         public List<StructListDoliva> ListDoliva
         {
