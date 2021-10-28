@@ -82,6 +82,8 @@ namespace BurSensor_Doliv
         }
 
         UdpClient server = null;
+        //готовим токен отмены
+        CancellationTokenSource cancelReceive = new CancellationTokenSource();
         async public void SearchIP(ComboBox comboBox, Button button)
         {
             //При поиске IP адресов блокируем выбор и ввод
@@ -92,11 +94,13 @@ namespace BurSensor_Doliv
 
             List<string> bufIP = new List<string>();
             int iter = 0;
+            if (server != null)
+            server.Dispose();
+            cancelReceive = new CancellationTokenSource();
 
             try
             {
                 server = new UdpClient(port);
-
                 // Получаем и отдаем сразу. Эхо сервер
                 while (iter < 10)
                 {
@@ -106,9 +110,15 @@ namespace BurSensor_Doliv
                         {
                             tConnectTimeout.Elapsed += new System.Timers.ElapsedEventHandler(tConnectTimeout_Elapsed);
                             tConnectTimeout.Start();
-                            UdpReceiveResult x = await server.ReceiveAsync();
 
-                            byte[] bytes = x.Buffer;
+                            //UdpReceiveResult x = await server.ReceiveAsync();
+                            Task<UdpReceiveResult> x = ReceiveAsync(server, cancelReceive.Token);
+
+
+                            if (x.Result.Buffer == null)
+                                throw new RegReceiverException(this, "Нет данных");
+
+                            byte[] bytes = x.Result.Buffer;
 
                             string results = Encoding.UTF8.GetString(bytes);
 
@@ -117,22 +127,28 @@ namespace BurSensor_Doliv
 
                             if (indexOfSubstring > 0)
                             {
-                                string ipServer = x.RemoteEndPoint.Address.ToString();
+                                string ipServer = x.Result.RemoteEndPoint.Address.ToString();
 
                                 bufIP.Add(ipServer);
 
                             }
                         }
                     }
-                    catch (ObjectDisposedException ex)
+                    //catch (ObjectDisposedException ex)
+                    //{
+                    //    server.Dispose();
+                    //    server = new UdpClient(port);
+                    //    MessageBox.Show(ex.Message);
+                    //}
+                    catch (RegReceiverException ex)
                     {
-                        server = new UdpClient(port);
-                        //MessageBox.Show(ex.Message);
+                        MessageBox.Show("Нет сигнала, возможно вы не подключены к локальной сети, \nлибо в данный момент ни на одном компьютере не работает программа `Регистрация`");
+                        iter = 10;
+                        
+                        return;
                     }
-
                     tConnectTimeout.Stop();
                     tConnectTimeout.Dispose();
-
                     //Индикатор прогресса поиска адресов
                     iter++;
                     string progress = new String('▐', iter);
@@ -143,13 +159,13 @@ namespace BurSensor_Doliv
                 return;
             }
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
             finally
             {
-                if (server != null) server.Close();
+                //if (server != null) server.Close();
                 _iplist = new List<string>(bufIP.Distinct());
 
                 comboBox.Items.Clear();
@@ -162,21 +178,65 @@ namespace BurSensor_Doliv
                 comboBox.Enabled = true;
                 button.Enabled = true;
 
-
+                //Dispose(true);
             }
         }
 
         private void tConnectTimeout_Elapsed(object sender, ElapsedEventArgs e)
         {
-            server.Close();
+            //if (server != null)
+            //{
+            //    server.Close();
+            //    server.Dispose();
 
+            //}
+            Dispose(true);
             tConnectTimeout.Stop();
             tConnectTimeout.Dispose();
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Асинхронный запрос на ожидание приёма данных с возможностью досрочного выхода
+        /// (для выхода из ожидания вызовите метод Disconnect())
+        /// </summary>
+        /// <param name="client">Рабочий экземпляр класса UdpClient</param>
+        /// <param name="breakToken">Признак досрочного завершения</param>
+        /// <returns>Если breakToken произошёл до вызова данного метода или в режиме ожидания
+        /// ответа, вернёт пустой UdpReceiveResult; при удачном получении ответа-результат
+        /// асинхронной операции чтения</returns>
+        public Task<UdpReceiveResult> ReceiveAsync(UdpClient client, CancellationToken breakToken)
+            => breakToken.IsCancellationRequested
+                ? Task<UdpReceiveResult>.Run(() => new UdpReceiveResult())
+                : Task<UdpReceiveResult>.Factory.FromAsync(
+                    (callback, state) => client.BeginReceive(callback, state),
+                    (ar) =>
+                    {
+                /// Предотвращение <exception cref="ObjectDisposedException"/>
+                if (breakToken.IsCancellationRequested)
+                            return new UdpReceiveResult();
+
+                        IPEndPoint remoteEP = null;
+                        var buffer = client.EndReceive(ar, ref remoteEP);
+                        return new UdpReceiveResult(buffer, remoteEP);
+                    },
+                    null);
+
+        
+        //CancellationToken cancelReceive = _tokenSource.Token;
+        protected virtual void Dispose( bool disposing)
+        {
+            if (disposing)
+            {
+                this.cancelReceive?.Cancel();
+                this.server?.Close();
+                this.cancelReceive?.Dispose();
+            }
+        }
+
         bool status = true;
         private System.Timers.Timer tConnectTimeout;
+        private TcpClient client = new TcpClient();
 
         async public void tcpClientReadPacket(string ip)
         {
@@ -359,6 +419,22 @@ namespace BurSensor_Doliv
         public static string ByteArrayToString(byte[] ba)
         {
             return BitConverter.ToString(ba).Replace("-", "");
+        }
+    }
+
+    //Реализуем свой класс исключений
+    public class RegReceiverException: ApplicationException
+    {
+        LeuzaRegReceiver leuzaReg;
+
+        public RegReceiverException(LeuzaRegReceiver leuzaReg, string message): base(message)
+        {
+            this.leuzaReg = leuzaReg;
+        }
+
+        public LeuzaRegReceiver LeuzaRegReceiver
+        {
+            get { return leuzaReg; }
         }
     }
 }
