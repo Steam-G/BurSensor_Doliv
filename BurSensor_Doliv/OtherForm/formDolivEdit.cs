@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,10 +61,11 @@ namespace BurSensor_Doliv.OtherForm
 
         private void Tb_numb_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == ',') e.KeyChar = '.';
+            Char DecSep = Convert.ToChar(NumberFormatInfo.CurrentInfo.NumberDecimalSeparator);
+            if (e.KeyChar == '.' || e.KeyChar == ',') e.KeyChar = DecSep;
             char number = e.KeyChar;
             if (!Char.IsDigit(number) && number != 8 && number != 46 && number != 44 && number != 45) // цифры, клавиша BackSpace, точка, запятая и минус
-            { 
+            {
                 e.Handled = true;
             }
         }
