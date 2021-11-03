@@ -165,7 +165,6 @@ namespace BurSensor_Doliv.Components
             ExcelGen.GenerateExeleDoc();
         }
 
-        int selectIndex = 0;
         private void button1_Click(object sender, EventArgs e)
         {
             formDolivEdit dolivEdit;

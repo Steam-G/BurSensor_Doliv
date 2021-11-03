@@ -1,4 +1,5 @@
 ﻿using BurSensor_Doliv.Data;
+using BurSensor_Doliv.Tools;
 using Sys_components;
 using Sys_components.Elements;
 using System;
@@ -69,7 +70,8 @@ namespace BurSensor_Doliv
         //источник токена отмены
         CancellationTokenSource _tokenSource;
 
-
+        //Экземпляр объекта, работающего с логами
+        private Logs l = new Logs();
 
         public void Init()
         {
@@ -237,6 +239,7 @@ namespace BurSensor_Doliv
         bool status = true;
         private System.Timers.Timer tConnectTimeout;
         private TcpClient client = new TcpClient();
+        float val;
 
         async public void tcpClientReadPacket(string ip)
         {
@@ -245,115 +248,77 @@ namespace BurSensor_Doliv
             const int port = 65004;
 
             // Сохраним в параметрах этот IP
-            if (Properties.Settings.Default.defaultIP
-                != ip) Properties.Settings.Default.Save();
-
+            if (Properties.Settings.Default.defaultIP != ip)
+            {
+                Properties.Settings.Default.defaultIP = ip;
+                Properties.Settings.Default.Save();
+            }
 
             //готовим токен отмены
             _tokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = _tokenSource.Token;
+
+            
             status = true;
 
             try
             {
-                byte[] buf = new byte[4096];
-                int i = 0; // это номер пакета данных, регистрация шлет их несколькими пачками
-
                 while (status)
                 {
 
-                    client = new TcpClient();
-                    await client.ConnectAsync(ip, port);
+                    //client = new TcpClient();
+                    //await client.ConnectAsync(ip, port);
 
-                    //client.Connect(ip, port);
+                    //byte[] buffer = new byte[client.ReceiveBufferSize];
+                    //int bytesCount;
+                    //StringBuilder response = new StringBuilder();
+                    //NetworkStream stream = client.GetStream();
+                    StringBuilder response = await ResponceAsync(ip, port, cancelToken);
 
-                    byte[] data = new byte[1514];
-                    StringBuilder response = new StringBuilder();
-                    NetworkStream stream = client.GetStream();
+                    //do
+                    //{
+                    //    //_StatusLabel.Text = string.Format("IP: {0}, идет опрос (пакет {1})...", ip, i);
+                    //    //_StatusLabel.Font = new Font(_StatusLabel.Name, 9, FontStyle.Bold);
+                    //    //_StatusLabel.ForeColor = Color.Green;
+                    //    bytesCount = await stream.ReadAsync(buffer, 0, buffer.Length);
+                    //    response.Append(Encoding.Default.GetString(buffer, 0, bytesCount));
 
-                    string dataHex = "";
-                    string dataString = "";
-                    do
+
+                    //    //await Task.Delay(1);
+                    //    if (!stream.DataAvailable)
+                    //    {
+                    //        var availible = stream.DataAvailable;
+                    //    }
+                    //}
+                    //while (stream.DataAvailable); // пока данные есть в потоке
+                    await Task.Delay(1000);
+                    //MessageBox.Show($"{response.Capacity}");
+                    byte[] buffer = Encoding.Default.GetBytes(response.ToString());
+                    string subString = @"UVEmkOpts";
+                    int indexOfSubstring = response.ToString().IndexOf(subString); // IndexOfSubstring - позиция ключевого слова 
+
+                    if (indexOfSubstring > -1)
                     {
-                        int bytes = await stream.ReadAsync(data, 0, data.Length);
-
-
-                        dataHex = dataHex + ByteArrayToString(data);
-                        //int bytes = stream.Read(data, 0, data.Length);
-
-                        response.Append(Encoding.Default.GetString(data, 0, bytes));
-                        i++;
-                        _StatusLabel.Text = string.Format("IP: {0}, идет опрос (пакет {1})...", ip, i);
-                        _StatusLabel.Font = new Font(_StatusLabel.Name, 9, FontStyle.Bold);
-                        _StatusLabel.ForeColor = Color.Green;
-                        if (i == 5) // интересует определенный пакет, там расположены нужные значения
-                        {
-                            //FindAndReadUDataStorage(data, response);
-
-                            string paket = response.ToString();
-                            //string subString = @"DataStorage";
-                            string subString = @"UVEmkOpts";
-                            dataString = dataString + response.ToString();
-                            int indexOfSubstring = response.ToString().IndexOf(subString); // равно 6
-                            int lengthResponce = response.Length;
-
-                            //Def.ZABOI = (decimal)BitConverter.ToDouble(data, indexOfSubstring + 18 - 1514);
-                            // IndexOfSubstring - позиция ключевого слова, 
-                            // 14 - смещение до первого числового значения (4 байта),
-                            // 4 - перепрыгиваем через 4 байта до следующего числового значения
-                            // 4 - перепрыгиваем еще через 4 байта до следующего числового значения
-                            // прием ведется пакетами по 1514 байт, однако поиск ключевого слова проходит по пачке принятых данных
-                            // потому требуется сместиться на неколько пакетов (i-1)*1514 чтобы попасть в нужные отрезок
-                            
-                            if (indexOfSubstring > -1)
-                            {
-                                var val = BitConverter.ToSingle(data, indexOfSubstring + 14 + 4 + 4 - 1514 * (i - 1));
-
-                                SmallProperty[0].Value = val.ToString("#.##");
-                                _dataStorage.ObemJidkosti = val;
-
-                                // Генерируем событие о изменении листа КНБК
-                                ValDolivChanged?.Invoke(this, new EventArgs());
-                            }
-                            SmallProperty[0].Value = BitConverter.ToSingle(data, indexOfSubstring + 14 + 4 + 4 - 1514 * (i - 1)).ToString("#.##");
-                            
-                            //SmallProperty[2].Value = BitConverter.ToDouble(data, indexOfSubstring + 18 + 8 - 1514).ToString("#.##");
-
-                            response.Clear();
-                            //stream.Dispose();
-                            //break;
-                        }
-
-                        //if (i >= 100)
-                        //{
-                        //    response.Clear();
-                        //    i = 0;
-                        //}
-                        
-                        //await Task.Delay(1);
-                        if (!stream.DataAvailable)
-                        {
-                            var availible = stream.DataAvailable;
-                        }
-                        //response.Clear();
+                        //val = BitConverter.ToSingle(buffer, indexOfSubstring + 14 + 4 + 4);
+                        //string st = response.ToString(indexOfSubstring, 26);
+                        //l.LogWrite($"Индекс: {indexOfSubstring}", $"Значение: {val}");
+                        //l.LogWrite($"Индекс: {indexOfSubstring}, Байты: {st}", $"Значение: {val}");
+                        byte[] valByte = new byte[4];
+                        Array.Copy(buffer, indexOfSubstring + 14 + 4 + 4, valByte, 0, 4);
+                        SendValueUP(valByte);
                     }
-                    while (stream.DataAvailable); // пока данные есть в потоке
 
-                    //var buferByte = ReadFully(stream);
-                    response.Clear();
-                    stream.Dispose();
-                    // Закрываем потоки
-                    stream.Close();
-                    client.Close();
+                    //response.Clear();
+                    //stream.Dispose();
+                    //// Закрываем потоки
+                    //stream.Close();
+                    //client.Close();
 
-                    i = 0;
+                    ////здесь будет выброшено исключение в случае нажатия на кнопку отмены
+                    //cancelToken.ThrowIfCancellationRequested();
 
-                    //здесь будет выброшено исключение в случае нажатия на кнопку отмены
-                    cancelToken.ThrowIfCancellationRequested();
-
+                    
                 }
-
-
             }
             catch (SocketException e)
             {
@@ -391,11 +356,91 @@ namespace BurSensor_Doliv
                 _StatusLabel.Font = new Font(_StatusLabel.Name, 9, FontStyle.Bold);
                 _StatusLabel.ForeColor = Color.DarkRed;
 
-                MessageBox.Show(e.Message + "/nОтрабатываем ошибку");
+                MessageBox.Show(e.Message + "\nОтрабатываем ошибку");
                 //Console.WriteLine("Exception: {0}", e.Message);
             }
 
 
+        }
+
+        private async Task<StringBuilder> ResponceAsync(string ip, int port, CancellationToken cancelToken)
+        {
+            client = new TcpClient();
+            await client.ConnectAsync(ip, port);
+
+            //byte[] buffer = new byte[client.ReceiveBufferSize];.
+            byte[] buffer = new byte[65536];
+            int bytesCount;
+            StringBuilder response = new StringBuilder();
+            NetworkStream stream = client.GetStream();
+
+            do
+            {
+                //_StatusLabel.Text = string.Format("IP: {0}, идет опрос (пакет {1})...", ip, i);
+                //_StatusLabel.Font = new Font(_StatusLabel.Name, 9, FontStyle.Bold);
+                //_StatusLabel.ForeColor = Color.Green;
+                //MessageBox.Show($"{buffer.Length}");
+                bytesCount = await stream.ReadAsync(buffer, 0, buffer.Length);
+                response.Append(Encoding.Default.GetString(buffer, 0, bytesCount));
+
+
+                //await Task.Delay(1);
+                if (!stream.DataAvailable)
+                {
+                    var availible = stream.DataAvailable;
+                }
+            }
+            while (stream.DataAvailable); // пока данные есть в потоке
+
+            //response.Clear();
+            stream.Dispose();
+            // Закрываем потоки
+            stream.Close();
+            client.Close();
+
+            //здесь будет выброшено исключение в случае нажатия на кнопку отмены
+            cancelToken.ThrowIfCancellationRequested();
+            string testresponce = response.ToString(0,response.Capacity);
+            return response;
+        }
+
+        private static float GetFloatValue(int i, byte[] data, int indexOfSubstring)
+        {
+            // 14 - смещение до первого числового значения (4 байта),
+            // 4 - перепрыгиваем через 4 байта до следующего числового значения
+            // 4 - перепрыгиваем еще через 4 байта до следующего числового значения
+            // прием ведется пакетами по 1514 байт, однако поиск ключевого слова проходит по пачке принятых данных
+            // потому требуется сместиться на неколько пакетов (i-1)*1514 чтобы попасть в нужные отрезок
+            return BitConverter.ToSingle(data, indexOfSubstring + 14 + 4 + 4 - 1514 * (i - 1));
+        }
+
+        private static float GetNewFloatValue(byte[] data, int indexOfSubstring)
+        {
+            return BitConverter.ToSingle(data, indexOfSubstring + 14 + 4 + 4);
+        }
+
+        private void SendValueUP(float val)
+        {
+            SmallProperty[0].Value = val.ToString("#.##");
+            _dataStorage.ObemJidkosti = val;
+            //MessageBox.Show($"{val}");
+
+            // Генерируем событие о изменении листа КНБК
+            ValDolivChanged?.Invoke(this, new EventArgs());
+        }
+
+        private void SendValueUP(byte[] bytes)
+        {
+            float value = BitConverter.ToSingle(bytes, 0);
+            StringBuilder st = new StringBuilder();
+            st.Append(Encoding.Default.GetString(bytes, 0, bytes.Count()));
+            SmallProperty[0].Value = value.ToString("#.##");
+            _dataStorage.ObemJidkosti = value;
+            l.LogWrite($"Байты: {st.ToString()}", $"Значение: {value}");
+            //MessageBox.Show($"{val}");
+
+            // Генерируем событие о изменении листа КНБК
+            ValDolivChanged?.Invoke(this, new EventArgs());
         }
 
         public static byte[] ReadFully(Stream input)

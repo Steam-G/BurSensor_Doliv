@@ -340,7 +340,6 @@ namespace BurSensor_Doliv.Excel_doc
 
         private void FillInfoKNBK(Excel._Worksheet oSheet, int iStartRow, string[,] saInfoKNBK)
         {
-            int countRow = 3;
             int countColumn = saInfoKNBK.GetLength(0);
 
             //Нарисуем заголовок

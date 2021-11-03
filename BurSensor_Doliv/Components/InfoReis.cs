@@ -71,7 +71,6 @@ namespace BurSensor_Doliv
             table.Columns.Add("Заголовок", typeof(string));
             table.Columns.Add("Значение", typeof(string));
 
-            int i = 0;
             foreach (var item in Zagolovki)
             {
                 DataRow row = table.NewRow();
