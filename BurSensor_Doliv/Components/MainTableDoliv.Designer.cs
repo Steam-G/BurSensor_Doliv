@@ -106,6 +106,7 @@
             // 
             // dgv_Doliv
             // 
+            this.dgv_Doliv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Doliv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Doliv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Doliv.Location = new System.Drawing.Point(0, 0);
@@ -113,6 +114,7 @@
             this.dgv_Doliv.ReadOnly = true;
             this.dgv_Doliv.RowHeadersVisible = false;
             this.dgv_Doliv.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgv_Doliv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_Doliv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Doliv.Size = new System.Drawing.Size(614, 315);
             this.dgv_Doliv.TabIndex = 0;

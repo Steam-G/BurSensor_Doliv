@@ -27,16 +27,18 @@ namespace BurSensor_Doliv
 
             infoTable1.ListKNBK = data.ListKNBK;
             infoReis1.ListInfoReis = data.ListInfoReis;
+            infoTable1.dataStorage = data;
             mainTableDoliv1.ListDoliva = data.ListDoliva;
             mainTableDoliv1.ListKNBK = data.ListKNBK;
             mainTableDoliv1.ListInfoReis = data.ListInfoReis;
 
             infoTable1.Reload();
+            infoReis1.Refresh();
             mainTableDoliv1.RefreshTable();
 
             connectLeuza1.AddControl(spb_ValDoliv);
             connectLeuza1.ConnectLeuza_Init();
-            test();
+            //test();
 
             connectLeuza1.LeuzaRegReceiver.ValDolivChanged += new EventHandler(ValDolivChanged);
             infoTable1.ListKNBKChanged += new EventHandler(ListKNBKChanged);

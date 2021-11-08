@@ -11,10 +11,10 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\192.168.1.200\Doc\IT\Programming\Publish\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>ftp://npfgorizont.ru/www/npfgorizont.ru/files/Publish/BurSensor_Doliv/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Unc</InstallFrom>
+    <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -22,14 +22,16 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\192.168.1.200\Doc\IT\Programming\Publish\</InstallUrl>
-    <UpdateUrl>\\192.168.1.200\Doc\IT\Programming\Publish\</UpdateUrl>
+    <InstallUrl>http://npfgorizont.ru/files/Publish/BurSensor_Doliv/</InstallUrl>
+    <UpdateUrl>http://npfgorizont.ru/files/Publish/BurSensor_Doliv/</UpdateUrl>
     <TargetCulture>ru</TargetCulture>
     <ProductName>BurSensor Doliv</ProductName>
     <PublisherName>НПФ Горизонт</PublisherName>
     <SuiteName>BurSensor components</SuiteName>
     <MinimumRequiredVersion>1.0.0.0</MinimumRequiredVersion>
-    <ApplicationRevision>6</ApplicationRevision>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>12</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
