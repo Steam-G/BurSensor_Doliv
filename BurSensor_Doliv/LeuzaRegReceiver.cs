@@ -320,7 +320,7 @@ namespace BurSensor_Doliv
                     
                 }
             }
-            catch (SocketException e)
+            catch (SocketException)
             {
                 _StatusLabel.Text = string.Format("Сигнал с {0} потерян... попытка переподключиться", ip);
                 _StatusLabel.Font = new Font(_StatusLabel.Name, 9, FontStyle.Bold);
@@ -368,7 +368,7 @@ namespace BurSensor_Doliv
             client = new TcpClient();
             await client.ConnectAsync(ip, port);
 
-            //byte[] buffer = new byte[client.ReceiveBufferSize];.
+            //byte[] buffer = new byte[client.ReceiveBufferSize];
             byte[] buffer = new byte[65536];
             int bytesCount;
             StringBuilder response = new StringBuilder();

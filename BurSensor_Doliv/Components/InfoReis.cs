@@ -44,7 +44,7 @@ namespace BurSensor_Doliv
             set => data = value;
         }
 
-        public void Refresh()
+        public void RefreshTable()
         {
             tbData.Columns.Clear();
             tbData.DataSource = GetBindingSource();
@@ -137,7 +137,8 @@ namespace BurSensor_Doliv
                         break;
                 }
                 ListInfoReisChanged?.Invoke(this, new EventArgs());
-                Refresh();
+                //RefreshTable();
+                
             }
         }
     }

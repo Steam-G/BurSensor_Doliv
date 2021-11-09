@@ -33,7 +33,7 @@ namespace BurSensor_Doliv
             mainTableDoliv1.ListInfoReis = data.ListInfoReis;
 
             infoTable1.Reload();
-            infoReis1.Refresh();
+            infoReis1.RefreshTable();
             mainTableDoliv1.RefreshTable();
 
             connectLeuza1.AddControl(spb_ValDoliv);
@@ -50,7 +50,7 @@ namespace BurSensor_Doliv
         private void test()
         {
             infoReis1.ListInfoReis.ValMestorojdenieStr = "Верхнее Пурпейское";
-            infoReis1.Refresh();
+            infoReis1.RefreshTable();
 
             infoTable1.dataStorage = data;
         }
